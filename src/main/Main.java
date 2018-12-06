@@ -16,10 +16,12 @@ public class Main {
 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); //Windows Look and feel
 
-        guit frame = new guit();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+
+    guit frame = new guit();
+    frame.getguit();
+
+
+
 
 
 

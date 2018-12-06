@@ -1,6 +1,8 @@
 package main;
 
 import main.Modif;
+import main.guit;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,6 +32,7 @@ public class new1 extends JFrame {
     private JButton modificationButton;
     private JPanel PNouveauClient;
     private JPanel PClientEnregistre;
+    private JButton retourButton;
 
     public new1(){
         add(panel2);
@@ -42,7 +45,7 @@ public class new1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Modif frame3 = new Modif();
                 frame3.setSize(800,400);
-                frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame3.pack();
                 frame3.setVisible(true);
                 PClientEnregistre.setVisible(false);
@@ -62,6 +65,25 @@ public class new1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PClientEnregistre.setVisible(true);
                 PNouveauClient.setVisible(false);
+            }
+        });
+        enregistrerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new1 frame2 = new new1();
+                frame2.getnew1();
+                frame2.setVisible(true);
+                frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                setVisible(false);
+            }
+        });
+        retourButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guit frame = new guit();
+                frame.getguit();
+                setVisible(false);
             }
         });
     }

@@ -20,7 +20,7 @@ public class guit extends JFrame{
 
                 new1 frame2 = new new1();
 
-                frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame2.pack();
                 frame2.setSize(1800,400);
                 frame2.setVisible(true);
@@ -39,6 +39,13 @@ public class guit extends JFrame{
                 JOptionPane.showMessageDialog(panel1,querry);
             }
         });
+    }
+
+    public void getguit (){
+        guit frame = new guit();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
 
