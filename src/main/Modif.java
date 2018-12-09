@@ -26,7 +26,7 @@ public void getl(){
 //String s = Main.getz();
 ArrayList<String> l =null;
 //l.add(s);
-   JList list1 = new JList(l.toArray());
+  // JList list1 = new JList(l.toArray());
 }
 
 

@@ -13,7 +13,6 @@ public class guit extends JFrame{
 
     public guit (){
         add(panel1);
-        setSize(600,300);
         nouvelleCommandeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -22,6 +21,7 @@ public class guit extends JFrame{
                 new1 frame2 = new new1();
 
                 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame2.setBounds(560,340,1,1);
                 frame2.setPreferredSize(new Dimension(800,400));
                 frame2.setMinimumSize(new Dimension(800,400));
                 frame2.setVisible(true);
@@ -46,6 +46,9 @@ public class guit extends JFrame{
         guit frame = new guit();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setBounds(735,340,1,1);
+        frame.setPreferredSize(new Dimension(450,400));
+        frame.setMinimumSize(new Dimension(450,400));
         frame.setVisible(true);
     }
 

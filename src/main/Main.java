@@ -22,6 +22,10 @@ public class Main {
         arr.add("Hatchet");
         arr.add("Sword");
         arr.add("Shield");
+        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
+        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
+        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
+
         DefaultListModel lm = new DefaultListModel();
         for(int i = 0; i < arr.size(); i++)
         {
@@ -38,6 +42,7 @@ public class Main {
 
             guit frame = new guit();
              frame.getguit();
+
 
     }
 

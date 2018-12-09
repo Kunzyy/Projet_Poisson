@@ -5,6 +5,7 @@ import main.guit;
 import main.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,10 +47,12 @@ public class new1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Modif frame3 = new Modif();
-                frame3.setSize(800,400);
+                frame3.setBounds(650,200,1,1);
                 frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                 frame3.pack();
                 frame3.setVisible(true);
+                frame3.setPreferredSize(new Dimension(500,800));
+                frame3.setMinimumSize(new Dimension(500,800));
                 frame3.getModif();
 
 
@@ -77,6 +80,9 @@ public class new1 extends JFrame {
                 frame2.getnew1();
                 frame2.setVisible(true);
                 frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame2.setBounds(560,340,1,1);
+                frame2.setPreferredSize(new Dimension(800,400));
+                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
             }
         });
@@ -95,6 +101,9 @@ public class new1 extends JFrame {
                 frame2.getnew1();
                 frame2.setVisible(true);
                 frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame2.setBounds(560,340,1,1);
+                frame2.setPreferredSize(new Dimension(800,400));
+                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
             }
         });
@@ -105,6 +114,9 @@ public class new1 extends JFrame {
                 frame2.getnew1();
                 frame2.setVisible(true);
                 frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame2.setBounds(560,340,1,1);
+                frame2.setPreferredSize(new Dimension(800,400));
+                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
             }
         });
