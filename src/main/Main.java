@@ -12,20 +12,16 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static int  getz(JList j){
+    public static int  getlm(JList j){
 
 
-// à faire : la partie database, il faudra charger les ingrédients de base depuis la data base dans l'arrayList
+        // à faire : la partie database, il faudra charger les ingrédients de base depuis la data base dans l'arrayList
 
 
         ArrayList<String> arr = new ArrayList<String>();
         arr.add("Hatchet");
         arr.add("Sword");
         arr.add("Shield");
-        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
-        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
-        arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");arr.add("Shield");
-
         DefaultListModel lm = new DefaultListModel();
         for(int i = 0; i < arr.size(); i++)
         {
@@ -39,10 +35,7 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, SQLException {
 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); //Windows Look and feel
-
             guit frame = new guit();
-             frame.getguit();
-
 
     }
 

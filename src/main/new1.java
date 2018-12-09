@@ -38,94 +38,87 @@ public class new1 extends JFrame {
 
 
     public new1(){
-        add(panel2);
+        getnew1();
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
-        setSize(600,300);
+
 
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Modif frame3 = new Modif();
-                frame3.setBounds(650,200,1,1);
-                frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                frame3.pack();
-                frame3.setVisible(true);
-                frame3.setPreferredSize(new Dimension(500,800));
-                frame3.setMinimumSize(new Dimension(500,800));
-                frame3.getModif();
-
-
             }
+
         });
         nouveauClientRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 PClientEnregistre.setVisible(false);
                 PNouveauClient.setVisible(true);
             }
+
         });
         clientEnregistréRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 PClientEnregistre.setVisible(true);
                 PNouveauClient.setVisible(false);
             }
+
         });
         enregistrerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 new1 frame2 = new new1();
-                frame2.getnew1();
-                frame2.setVisible(true);
-                frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                frame2.setBounds(560,340,1,1);
-                frame2.setPreferredSize(new Dimension(800,400));
-                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
+
             }
+
         });
         retourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 guit frame = new guit();
-                frame.getguit();
                 setVisible(false);
             }
+
         });
         enregisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 new1 frame2 = new new1();
-                frame2.getnew1();
-                frame2.setVisible(true);
-                frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                frame2.setBounds(560,340,1,1);
-                frame2.setPreferredSize(new Dimension(800,400));
-                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
+
             }
+
         });
         enregistrerButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 new1 frame2 = new new1();
-                frame2.getnew1();
-                frame2.setVisible(true);
-                frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                frame2.setBounds(560,340,1,1);
-                frame2.setPreferredSize(new Dimension(800,400));
-                frame2.setMinimumSize(new Dimension(800,400));
                 setVisible(false);
+
             }
+
         });
     }
 
     public void getnew1(){
-        add(panel2);
-        setSize(600,300);
-    }
 
+        add(panel2);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(560,340,1,1);
+        setPreferredSize(new Dimension(800,400));
+        setMinimumSize(new Dimension(800,400));
+
+    }
 
 }

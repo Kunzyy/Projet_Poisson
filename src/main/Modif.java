@@ -1,10 +1,9 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,48 +16,47 @@ public class Modif extends JFrame {
     private JButton ajouterUnIngrédientButton;
     private JList list2;
     private JLabel autre;
-    private JPanel ajoutpanel;
 
 
-    int t=  Main.getz(list1);
-
-public void getl(){
-//String s = Main.getz();
-ArrayList<String> l =null;
-//l.add(s);
-  // JList list1 = new JList(l.toArray());
-}
-
+    int t =  Main.getlm(list1);
 
     public Modif() {
-        add(Panel3);
-        setSize(600,300);
+           getModif();
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-spinner1.setVisible (true);
+
+                spinner1.setVisible (true);
+
             }
         });
         retourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 setVisible(false);
+
             }
         });
         ajouterUnIngrédientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-ajouterUnIngrédientButton.setVisible(false);
-autre.setVisible(true);
-list2.setVisible(true);
+
+                ajouterUnIngrédientButton.setVisible(false);
+                autre.setVisible(true);
+                list2.setVisible(true);
+
             }
         });
     }
 
     public void getModif(){
         add(Panel3);
-        setSize(600,300);
+        setBounds(650,200,1,1);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setVisible(true);
+        setPreferredSize(new Dimension(500,800));
+        setMinimumSize(new Dimension(500,800));
     }
-
 
 }
