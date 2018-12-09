@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,8 +22,8 @@ public class guit extends JFrame{
                 new1 frame2 = new new1();
 
                 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame2.pack();
-                frame2.setSize(1800,400);
+                frame2.setPreferredSize(new Dimension(800,400));
+                frame2.setMinimumSize(new Dimension(800,400));
                 frame2.setVisible(true);
                 frame2.getnew1();
                 setVisible(false);
