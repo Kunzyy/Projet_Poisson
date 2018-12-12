@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="itext-5.0.5">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/Dvlp/External librairies/itext-5.0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/External librairies/itext-5.0.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

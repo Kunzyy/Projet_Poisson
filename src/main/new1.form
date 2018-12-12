@@ -346,7 +346,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="118b4" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="5bf12" class="javax.swing.JComboBox" binding="textField2" default-binding="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

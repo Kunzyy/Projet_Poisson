@@ -3,6 +3,7 @@ package main;
 import main.guit;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultTreeCellEditor;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,6 +31,30 @@ public class Main {
         j.setModel(lm);
         return 0;
     }
+
+public static int getm(JComboBox c,ArrayList<String> a){
+
+        DefaultComboBoxModel cm = new DefaultComboBoxModel();
+        for(int i =0; i<a.size();i++){
+            cm.addElement(a.get(i));
+        }
+
+        c.setModel(cm);
+
+
+        return 0;
+}
+
+public static ArrayList<String> getS(){
+        ArrayList<String> a = new ArrayList<>();
+        a.add("coucou");
+        a.add("coucou2");
+        a.add("coucou3");
+        a.add("coucou4");
+
+        return a;
+};
+
 
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, SQLException {

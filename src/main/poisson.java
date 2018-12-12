@@ -70,7 +70,7 @@ class poisson {
 
         Connection conn = null;
 
-        String url = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/Projet.db";
+        String url = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.sqlite";
 
         try
         {

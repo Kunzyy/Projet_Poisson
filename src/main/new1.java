@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.InputMethodListener;
+import java.util.ArrayList;
 
 public class new1 extends JFrame {
     private JPanel panel2;
@@ -19,7 +20,7 @@ public class new1 extends JFrame {
     private JRadioButton nouveauClientRadioButton;
     private JRadioButton clientEnregistréRadioButton;
     private JComboBox textField1;
-    private JTextField textField2;
+    private JComboBox textField2;
     private JTextField textField3;
     private JSpinner spinner1;
     private JSpinner spinner2;
@@ -44,12 +45,21 @@ public class new1 extends JFrame {
     private JLabel label4;
 
 
+ArrayList<String> Array1 = Main.getS();
+
+
+int t = Main.getm(formattedTextField1,Array1);
+
+
     public new1(){
         getnew1();
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
         label6.setVisible(false);
         spinner6.setVisible(false);
+        String Test ="coucou";
+
+
 
 
         modificationButton.addActionListener(new ActionListener() {
