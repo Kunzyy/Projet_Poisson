@@ -15,6 +15,7 @@ public class new2 extends JFrame{
     private JLabel label2;
     private JLabel label3;
     private JLabel label4;
+    private JPanel panel5;
 
     public new2(){
         getnew2();
@@ -22,7 +23,7 @@ public class new2 extends JFrame{
 
     public void getnew2(){
 
-
+        add(panel5);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(560,340,1,1);
