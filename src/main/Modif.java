@@ -1,9 +1,13 @@
 package main;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.InputMethodListener;
+import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -16,10 +20,13 @@ public class Modif extends JFrame {
     private JButton ajouterUnIngrédientButton;
     private JList list2;
     private JLabel autre;
+    private JComboBox tf1;
 
+    ArrayList<String> Arrayl1 = Main.getS();
+    ArrayList<String> Arrayl2 = Main.getS();
 
-    int t =  Main.getlm(list1);
-    int t1 =  Main.getlm(list2);
+    int t =  Main.getlm(list1,Arrayl1);
+    int t1 =  Main.getlm(list2,Arrayl2);
 
     public Modif() {
            getModif();
@@ -49,6 +56,29 @@ public class Modif extends JFrame {
 
             }
         });
+
+
+        list2.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+
+
+                ArrayList<String> a =new ArrayList<>();
+
+
+               String s = list2.getSelectedValue().toString();
+                 if(s!=list1.getModel().getElementAt(0)) a.add(s);
+
+               for (int i=0;i<list1.getModel().getSize();i++){
+
+a.add(list1.getModel().getElementAt(i));
+               }
+                int t3 =  Main.getlm(list1,a);
+
+
+            }
+        });
     }
 
     public void getModif(){
@@ -59,5 +89,7 @@ public class Modif extends JFrame {
         setPreferredSize(new Dimension(500,800));
         setMinimumSize(new Dimension(500,800));
     }
+
+
 
 }

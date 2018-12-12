@@ -13,20 +13,17 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static int  getlm(JList j){
+    public static int  getlm(JList j,ArrayList<String> a){
 
 
         // à faire : la partie database, il faudra charger les ingrédients de base depuis la data base dans l'arrayList
 
 
-        ArrayList<String> arr = new ArrayList<String>();
-        arr.add("Hatchet");
-        arr.add("Sword");
-        arr.add("Shield");
+
         DefaultListModel lm = new DefaultListModel();
-        for(int i = 0; i < arr.size(); i++)
+        for(int i = 0; i < a.size(); i++)
         {
-            lm.addElement(arr.get(i));
+            lm.addElement(a.get(i));
         }
         j.setModel(lm);
         return 0;
@@ -53,6 +50,13 @@ public static ArrayList<String> getS(){
 
         return a;
 };
+
+    public static ArrayList<String> gettest(String s){
+      ArrayList<String> a = new ArrayList<>();
+      a.add(s);
+
+       return  a;
+    }
 
 
 
