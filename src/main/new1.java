@@ -20,21 +20,21 @@ public class new1 extends JFrame {
     private JRadioButton nouveauClientRadioButton;
     private JRadioButton clientEnregistréRadioButton;
     private JComboBox textField1;
-    private JComboBox textField2;
+    private JTextField textField2;
     private JTextField textField3;
     private JSpinner spinner1;
     private JSpinner spinner2;
     private JButton enregistrerButton;
-    private JComboBox comboBox1;
+    private JComboBox cbnom;
     private JComboBox formattedTextField1;
-    private JComboBox textField4;
+    private JComboBox tfnompoisson;
     private JSpinner spinner3;
     private JSpinner spinner4;
     private JButton enregisterButton;
     private JSpinner spinner5;
     private JButton enregistrerButton1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
+    private JComboBox cbcalibre;
+    private JComboBox cbtypecuisson;
     private JButton modificationButton;
     private JPanel PNouveauClient;
     private JPanel PClientEnregistre;
@@ -45,10 +45,18 @@ public class new1 extends JFrame {
     private JLabel label4;
 
 
-ArrayList<String> Array1 = Main.getS();
+ArrayList<String> Arraypoisson = Main.getS();
+ArrayList<String> Arraynomclient = Main.getS();
+ArrayList<String> Arraynompoisson = Main.getS();
+ArrayList<String> Arraycalibre = Main.getS();
+ArrayList<String> Arraytypecuisson = Main.getS();
 
 
-int t = Main.getcm(formattedTextField1,Array1);
+int t = Main.getcm(formattedTextField1,Arraypoisson);
+int t1 = Main.getcm(cbnom,Arraynomclient);
+int t2 = Main.getcm(tfnompoisson,Arraynompoisson);
+int t3 = Main.getcm(cbcalibre,Arraynompoisson);
+int t4 = Main.getcm(cbtypecuisson,Arraynompoisson);
 
 
     public new1(){
@@ -133,7 +141,15 @@ int t = Main.getcm(formattedTextField1,Array1);
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                label4.setText("Quantité de poisson :");
+                if(label4.getText()== "Nombre de poissons :") {
+                    label4.setText("Quantité de poisson :");
+
+                }
+                    else {
+                        label4.setText("Nombre de poissons :");
+
+                }
+
 
             }
         });

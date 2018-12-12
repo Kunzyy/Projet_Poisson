@@ -47,10 +47,9 @@ public static int getcm(JComboBox c,ArrayList<String> a){
 
 public static ArrayList<String> getS(){
         ArrayList<String> a = new ArrayList<>();
-        a.add("coucou");
-        a.add("coucou2");
-        a.add("coucou3");
-        a.add("coucou4");
+      for(int i =1;i<25;i++) {
+          a.add("coucou" + i);
+      }
 
         return a;
 };
