@@ -137,7 +137,7 @@
                       <text value="Id Poisson :"/>
                     </properties>
                   </component>
-                  <component id="a508e" class="javax.swing.JLabel">
+                  <component id="a508e" class="javax.swing.JLabel" binding="label4">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -145,11 +145,6 @@
                       <text value="Nombre de poissons :"/>
                     </properties>
                   </component>
-                  <vspacer id="e7e18">
-                    <constraints>
-                      <grid row="3" column="0" row-span="4" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
                   <component id="b0df5" class="javax.swing.JComboBox" binding="textField4" default-binding="true">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -193,6 +188,28 @@
                     <properties>
                       <text value="Enregistrer"/>
                     </properties>
+                  </component>
+                  <component id="95d20" class="javax.swing.JCheckBox" binding="unitéEnGrammesCheckBox" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="unité en grammes"/>
+                    </properties>
+                  </component>
+                  <component id="14de9" class="javax.swing.JLabel" binding="label6">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Quantité de poisson :"/>
+                    </properties>
+                  </component>
+                  <component id="ee54e" class="javax.swing.JSpinner" binding="spinner6">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
                   </component>
                 </children>
               </grid>
