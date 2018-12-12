@@ -19,6 +19,7 @@ public class Modif extends JFrame {
 
 
     int t =  Main.getlm(list1);
+    int t1 =  Main.getlm(list2);
 
     public Modif() {
            getModif();

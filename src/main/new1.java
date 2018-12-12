@@ -55,8 +55,8 @@ ArrayList<String> Arraytypecuisson = Main.getS();
 int t = Main.getcm(formattedTextField1,Arraypoisson);
 int t1 = Main.getcm(cbnom,Arraynomclient);
 int t2 = Main.getcm(tfnompoisson,Arraynompoisson);
-int t3 = Main.getcm(cbcalibre,Arraynompoisson);
-int t4 = Main.getcm(cbtypecuisson,Arraynompoisson);
+int t3 = Main.getcm(cbcalibre,Arraycalibre);
+int t4 = Main.getcm(cbtypecuisson,Arraytypecuisson);
 
 
     public new1(){
