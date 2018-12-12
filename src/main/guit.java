@@ -31,9 +31,9 @@ public class guit extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-            String querry = "select* FROM IngrédientsBase";
-                JOptionPane.showMessageDialog(panel1,querry);
-
+                new2 frame4 = new new2();
+                frame4.getnew2();
+                setVisible(false);
             }
 
         });

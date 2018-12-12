@@ -11,14 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-/**
- *
- * @author sqlitetutorial.net
- */
 class poisson {
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) throws IOException,SQLException {
 
         System.out.println("Bonjour");
