@@ -48,7 +48,7 @@ public class new1 extends JFrame {
 ArrayList<String> Array1 = Main.getS();
 
 
-int t = Main.getm(formattedTextField1,Array1);
+int t = Main.getcm(formattedTextField1,Array1);
 
 
     public new1(){
@@ -57,7 +57,7 @@ int t = Main.getm(formattedTextField1,Array1);
         PNouveauClient.setVisible(false);
         label6.setVisible(false);
         spinner6.setVisible(false);
-        String Test ="coucou";
+
 
 
 

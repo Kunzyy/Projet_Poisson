@@ -32,7 +32,7 @@ public class Main {
         return 0;
     }
 
-public static int getm(JComboBox c,ArrayList<String> a){
+public static int getcm(JComboBox c,ArrayList<String> a){
 
         DefaultComboBoxModel cm = new DefaultComboBoxModel();
         for(int i =0; i<a.size();i++){
