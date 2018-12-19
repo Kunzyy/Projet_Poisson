@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class guit extends JFrame{
     private JPanel panel1;
     private JButton nouvelleCommandeButton;
     private JButton commandesEnregistréesButton;
 
-
-    public guit (){
+    public guit () {
 
         getguit();
 
@@ -22,7 +23,6 @@ public class guit extends JFrame{
                 new1 frame2 = new new1();
                 frame2.getnew1();
                 setVisible(false);
-
             }
 
         });
@@ -48,6 +48,7 @@ public class guit extends JFrame{
         setPreferredSize(new Dimension(450,400));
         setMinimumSize(new Dimension(450,400));
         setVisible(true);
+
 
     }
 

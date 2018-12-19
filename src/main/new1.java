@@ -1,20 +1,12 @@
 package main;
 
-import main.Modif;
-import main.guit;
-import main.Main;
-
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.InputMethodListener;
 import java.util.ArrayList;
 
-public class new1 extends JFrame {
+public class new1 extends JFrame{
     private JPanel panel2;
     private JTabbedPane tabbedPane1;
     private JRadioButton nouveauClientRadioButton;
@@ -30,7 +22,7 @@ public class new1 extends JFrame {
     private JComboBox tfnompoisson;
     private JSpinner spinner3;
     private JSpinner spinner4;
-    private JButton enregisterButton;
+    private JButton enregistrerButton2;
     private JSpinner spinner5;
     private JButton enregistrerButton1;
     private JComboBox cbcalibre;
@@ -45,28 +37,33 @@ public class new1 extends JFrame {
     private JLabel label4;
 
 
-ArrayList<String> Arraypoisson = Main.getS();
-ArrayList<String> Arraynomclient = Main.getS();
-ArrayList<String> Arraynompoisson = Main.getS();
-ArrayList<String> Arraycalibre = Main.getS();
-ArrayList<String> Arraytypecuisson = Main.getS();
-
-
-int t = Main.getcm(formattedTextField1,Arraypoisson);
-int t1 = Main.getcm(cbnom,Arraynomclient);
-int t2 = Main.getcm(tfnompoisson,Arraynompoisson);
-int t3 = Main.getcm(cbcalibre,Arraycalibre);
-int t4 = Main.getcm(cbtypecuisson,Arraytypecuisson);
+ArrayList<String> Arrayplat = new ArrayList<>();
+ArrayList<String> Arraynomclient = new ArrayList<>();
+ArrayList<String> Arraynompoisson = new ArrayList<>();
+ArrayList<String> Arraycalibre = new ArrayList<>();
+ArrayList<String> Arraytypecuisson = new ArrayList<>();
 
 
     public new1(){
+
+
         getnew1();
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
         label6.setVisible(false);
         spinner6.setVisible(false);
 
+        fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
+        fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
+        fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
+        fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
+        fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
 
+        int t0 = fun.getcm(formattedTextField1,Arrayplat);
+        int t1 = fun.getcm(tfnompoisson,Arraynompoisson);
+        int t2 = fun.getcm(cbnom,Arraynomclient);
+        int t3 = fun.getcm(cbcalibre,Arraycalibre);
+        int t4 = fun.getcm(cbtypecuisson,Arraytypecuisson);
 
 
 
@@ -103,6 +100,16 @@ int t4 = Main.getcm(cbtypecuisson,Arraytypecuisson);
                 new1 frame2 = new new1();
                 setVisible(false);
 
+                String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
+
+                int idClient = 1;
+
+                ArrayList<String> tab = new ArrayList<>();
+                tab.add(Integer.toString(idClient));
+                tab.add(textField2.getText());
+                tab.add(textField3.getText());
+
+                fun.insertQuery(query,tab);
             }
 
         });
@@ -115,7 +122,7 @@ int t4 = Main.getcm(cbtypecuisson,Arraytypecuisson);
             }
 
         });
-        enregisterButton.addActionListener(new ActionListener() {
+        enregistrerButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -164,6 +171,6 @@ int t4 = Main.getcm(cbtypecuisson,Arraytypecuisson);
         setPreferredSize(new Dimension(800,400));
         setMinimumSize(new Dimension(800,400));
 
-    }
 
+    }
 }

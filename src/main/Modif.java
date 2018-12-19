@@ -22,14 +22,20 @@ public class Modif extends JFrame {
     private JLabel autre;
     private JComboBox tf1;
 
-    ArrayList<String> Arrayl1 = Main.getS();
-    ArrayList<String> Arrayl2 = Main.getS();
+    ArrayList<String> Arrayl1 = new ArrayList<>();
+    ArrayList<String> Arrayl2 = new ArrayList<>();
 
-    int t =  Main.getlm(list1,Arrayl1);
-    int t1 =  Main.getlm(list2,Arrayl2);
+
 
     public Modif() {
-           getModif();
+
+        getModif();
+        fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl1);
+        fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
+
+        int t0 =  fun.getlm(list1,Arrayl1);
+        int t1 =  fun.getlm(list2,Arrayl2);
+
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -71,10 +77,9 @@ public class Modif extends JFrame {
                  if(s!=list1.getModel().getElementAt(0)) a.add(s);
 
                for (int i=0;i<list1.getModel().getSize();i++){
-
-a.add(list1.getModel().getElementAt(i));
+                   a.add(list1.getModel().getElementAt(i));
                }
-                int t3 =  Main.getlm(list1,a);
+                int t3 =  fun.getlm(list1,a);
 
 
             }

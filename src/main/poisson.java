@@ -5,10 +5,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 
 class poisson {
@@ -66,29 +64,49 @@ class poisson {
     }
 
 
-    public static void connect() throws SQLException {
+    public static void connect(){
 
-        Connection conn = null;
+        //Pour le insert, le code est simple et c'est :
 
-        String url = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.sqlite";
+        String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
-        try
-        {
-            conn = DriverManager.getConnection(url);
-            System.out.println("Connection to SQLite has been established.");
+        ArrayList<String> tab = new ArrayList<>();
+        tab.add("4");
+        tab.add("Francis");
+        tab.add("117 217");
+
+        fun.insertQuery(query,tab);
 
 
-            //On va inserer des élements
-            String query =  "INSERT INTO Client(idClient,Nom,Téléphone) VALUES(?,?,?)";
+        /*try {
+            Connection conn = Main.getConnection();
 
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, 4);
-            pstmt.setString(2,"Georges");
-            pstmt.setString(3,"118 218");
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, 4);
+            pst.setString(2, "Georges");
+            pst.setString(3, "118 218");
 
-            String name;
-            pstmt.executeUpdate();
+            pst.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+    }
+
+            /*
+
+            String query = "SELECT idClient, Nom, Téléphone FROM Client";
+
+            Statement stmt  = conn.createStatement();
+            ResultSet rs    = stmt.executeQuery(query);
+
+
+                // loop through the result set
+                while (rs.next()) {
+                    System.out.println(rs.getInt("idClient") +  "\t" +
+                            rs.getString("Nom") + "\t" +
+                            rs.getString("Téléphone"));
+                }
         }
         catch (SQLException e)
         {
@@ -99,6 +117,28 @@ class poisson {
             if (conn != null) {
                 conn.close();
             }
-        }
-    }
+        }*/
+
+
 }
+
+
+
+/*Connection conn = null;
+        String url  = "jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=Database.accdb";
+
+        try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Probeleme avec le driver");
+        }
+
+        try {
+            conn = DriverManager.getConnection(url,"","");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null,"Problème avec la base de données !");
+        }
+        return conn; */
