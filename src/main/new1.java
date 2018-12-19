@@ -18,7 +18,7 @@ public class new1 extends JFrame{
     private JSpinner spinner2;
     private JButton enregistrerButton;
     private JComboBox cbnom;
-    private JComboBox formattedTextField1;
+    private JComboBox jComboBoxPlat;
     private JComboBox tfnompoisson;
     private JSpinner spinner3;
     private JSpinner spinner4;
@@ -59,7 +59,7 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
 
-        fun.getcm(formattedTextField1,Arrayplat);
+        fun.getcm(jComboBoxPlat,Arrayplat);
         fun.getcm(tfnompoisson,Arraynompoisson);
         fun.getcm(cbnom,Arraynomclient);
         fun.getcm(cbcalibre,Arraycalibre);
@@ -70,8 +70,8 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Modif frame3 = new Modif();
+String nomplat = jComboBoxPlat.getSelectedItem().toString();
+                Modif frame3 = new Modif(nomplat);
             }
 
         });

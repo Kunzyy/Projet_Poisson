@@ -20,21 +20,25 @@ public class Modif extends JFrame {
     private JButton ajouterUnIngrédientButton;
     private JList list2;
     private JLabel autre;
-    private JComboBox tf1;
+    private JLabel label1;
+    private JScrollPane jsp1;
 
     ArrayList<String> Arrayl1 = new ArrayList<>();
     ArrayList<String> Arrayl2 = new ArrayList<>();
 
+public Modif(){
 
+}
 
-    public Modif() {
-
+    public Modif(String nomPlat) {
+        label1.setText(nomPlat);
         getModif();
         fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl1);
         fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
 
         fun.getlm(list1,Arrayl1);
         fun.getlm(list2,Arrayl2);
+
 
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -58,7 +62,7 @@ public class Modif extends JFrame {
 
                 ajouterUnIngrédientButton.setVisible(false);
                 autre.setVisible(true);
-                list2.setVisible(true);
+                jsp1.setVisible(true);
 
             }
         });
@@ -91,8 +95,9 @@ public class Modif extends JFrame {
         setBounds(650,200,1,1);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(true);
-        setPreferredSize(new Dimension(500,800));
-        setMinimumSize(new Dimension(500,800));
+        setPreferredSize(new Dimension(750,800));
+        setMinimumSize(new Dimension(750,800));
+
     }
 
 

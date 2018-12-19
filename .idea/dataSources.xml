@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SQLite -" uuid="a0c066fb-3bea-43e7-b631-f0a65ee4e9d0">
+    <data-source source="LOCAL" name="data.sqlite" uuid="a5abcf3c-98a9-4237-9c29-2d5bd49dc597">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\frost\Documents\BA3\Base de données\data.sqlite</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
