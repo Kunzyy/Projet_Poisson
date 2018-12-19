@@ -97,9 +97,6 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                new1 frame2 = new new1();
-                setVisible(false);
-
                 String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
                 int idClient = 1;
@@ -110,6 +107,10 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
                 tab.add(textField3.getText());
 
                 fun.insertQuery(query,tab);
+                new1 frame2 = new new1();
+                setVisible(false);
+
+
             }
 
         });
