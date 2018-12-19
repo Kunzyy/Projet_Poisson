@@ -33,8 +33,8 @@ public class Modif extends JFrame {
         fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl1);
         fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
 
-        int t0 =  fun.getlm(list1,Arrayl1);
-        int t1 =  fun.getlm(list2,Arrayl2);
+        fun.getlm(list1,Arrayl1);
+        fun.getlm(list2,Arrayl2);
 
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -79,7 +79,7 @@ public class Modif extends JFrame {
                for (int i=0;i<list1.getModel().getSize();i++){
                    a.add(list1.getModel().getElementAt(i));
                }
-                int t3 =  fun.getlm(list1,a);
+                fun.getlm(list1,a);
 
 
             }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class fun {
 
-    public static int getlm(JList j, ArrayList<String> a){
+    public static void getlm(JList j, ArrayList<String> a){
 
         DefaultListModel lm = new DefaultListModel();
         for(int i = 0; i < a.size(); i++)
@@ -18,10 +18,9 @@ public class fun {
             lm.addElement(a.get(i));
         }
         j.setModel(lm);
-        return 0;
     }
 
-    public static int getcm(JComboBox c,ArrayList<String> a){
+    public static void getcm(JComboBox c,ArrayList<String> a){
 
         DefaultComboBoxModel cm = new DefaultComboBoxModel();
         for(int i =0; i<a.size();i++){
@@ -29,9 +28,6 @@ public class fun {
         }
 
         c.setModel(cm);
-
-
-        return 0;
     }
 
 

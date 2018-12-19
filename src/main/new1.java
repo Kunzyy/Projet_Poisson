@@ -59,11 +59,11 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
 
-        int t0 = fun.getcm(formattedTextField1,Arrayplat);
-        int t1 = fun.getcm(tfnompoisson,Arraynompoisson);
-        int t2 = fun.getcm(cbnom,Arraynomclient);
-        int t3 = fun.getcm(cbcalibre,Arraycalibre);
-        int t4 = fun.getcm(cbtypecuisson,Arraytypecuisson);
+        fun.getcm(formattedTextField1,Arrayplat);
+        fun.getcm(tfnompoisson,Arraynompoisson);
+        fun.getcm(cbnom,Arraynomclient);
+        fun.getcm(cbcalibre,Arraycalibre);
+        fun.getcm(cbtypecuisson,Arraytypecuisson);
 
 
 
