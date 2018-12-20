@@ -1,7 +1,7 @@
 package main;
 
 
-//class qui contient toutes les fonctions utiles au programme
+//Class qui contient toutes les fonctions utiles au programme
 //fun pour functions
 
 import javax.swing.*;
@@ -34,7 +34,7 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
+        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.db";
 
         try {
             conn = DriverManager.getConnection(url);

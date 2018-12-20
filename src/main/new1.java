@@ -53,6 +53,8 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         label6.setVisible(false);
         spinner6.setVisible(false);
 
+        spinner1.setModel(new SpinnerNumberModel(1, 1, 20, 1));
+
         fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
         fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
@@ -99,7 +101,7 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
             }
 
         });
-        enregistrerButton.addActionListener(new ActionListener() {
+        enregistrerButton.addActionListener(new ActionListener() {      //Panel Plat
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -129,7 +131,7 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
             }
 
         });
-        enregistrerButton2.addActionListener(new ActionListener() {
+        enregistrerButton2.addActionListener(new ActionListener() {  //Panel Poisson
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -139,7 +141,7 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
             }
 
         });
-        enregistrerButton1.addActionListener(new ActionListener() {
+        enregistrerButton1.addActionListener(new ActionListener() { // Panel Homard
             @Override
             public void actionPerformed(ActionEvent e) {
 
