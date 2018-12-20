@@ -36,9 +36,8 @@ public class new1 extends JFrame{
     private JPanel PClientEnregistre;
     private JButton retourButton;
     private JCheckBox unitéEnGrammesCheckBox;
-    private JSpinner spinner6;
-    private JLabel label6;
     private JLabel label4;
+    private boolean tranchesOuGrammes;  // 1 = grammes et 0 = tranches
 
 
 ArrayList<String> Arrayplat = new ArrayList<>();
@@ -56,13 +55,11 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         getnew1();
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
-        label6.setVisible(false);
-        spinner6.setVisible(false);
 
         spinner1.setModel(new SpinnerNumberModel(1, 1, 200, 1));
         spinner4.setModel(new SpinnerNumberModel(1, 1, 200, 1));
         spinner5.setModel(new SpinnerNumberModel(1, 1, 200, 1));
-        spinner6.setModel(new SpinnerNumberModel(50, 1, 10000, 50));
+
 
         fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
@@ -171,15 +168,13 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
 
                 if(label4.getText()== "Nombre de poissons :") {
                     label4.setText("Quantité de poisson :");
-                    spinner4.setVisible(false);
-                    spinner6.setVisible(true);
-
+                    spinner4.setModel(new SpinnerNumberModel(50, 1, 10000, 50));
+                    tranchesOuGrammes = true;
                 }
                 else {
                     label4.setText("Nombre de poissons :");
-                    spinner6.setVisible(false);
-                    spinner4.setVisible(true);
-                    //Bakkouche faut voir pour ca     boolean quiu va avec un seul sipnner et pas deux spinner
+                    spinner4.setModel(new SpinnerNumberModel(1, 1, 200, 1));
+                    tranchesOuGrammes = false;
                 }
             }
         });
