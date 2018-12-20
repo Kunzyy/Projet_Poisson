@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.InputMethodListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
@@ -26,19 +28,55 @@ public class Modif extends JFrame {
     ArrayList<String> Arrayl1 = new ArrayList<>();
     ArrayList<String> Arrayl2 = new ArrayList<>();
 
-public Modif(){
+    ArrayList<String> tab = new ArrayList<>();
+    ArrayList<String> quant = new ArrayList<>();
+
+
+    public Modif(int idPlat) {
 
 }
 
-    public Modif(String nomPlat) {
+    public Modif(String nomPlat,int idPlat) {
         label1.setText(nomPlat);
         getModif();
-        fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl1);
+
+        String query = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)=" +
+                idPlat+")) ORDER BY Contient.idPlat;";
+
+        ResultSet rs = fun.selectQuery(query);
+
+        while (true) {
+            try {
+                if (!rs.next()) break;
+
+                tab.add(rs.getString("idIngredientsBase"));
+                quant.add(rs.getString("Quantite"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for(int i = 0;i<tab.size();i++) {
+            String query2 = "SELECT IngredientsBase.Nom FROM IngredientsBase WHERE (((IngredientsBase.idIngredientsBase)=" +
+            tab.get(i) + "))";
+
+            ResultSet rs2 = fun.selectQuery(query2);
+
+            while (true) {
+                try {
+                    if (!rs2.next()) break;
+
+                    Arrayl1.add(rs2.getString("Nom"));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
 
         fun.getlm(list1,Arrayl1);
         fun.getlm(list2,Arrayl2);
-
 
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override

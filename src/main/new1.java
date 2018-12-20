@@ -70,8 +70,14 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-String nomplat = jComboBoxPlat.getSelectedItem().toString();
-                Modif frame3 = new Modif(nomplat);
+
+                String nomplat = jComboBoxPlat.getSelectedItem().toString();
+
+                ArrayList<String> tab = new ArrayList<>();
+                fun.remplirList("SELECT Plat.idPlat FROM Plat WHERE(((Plat.Nom="+nomplat+"));","idPlat",tab);
+                int idPlat = Integer.parseInt(tab.get(0));
+                System.out.println(idPlat);
+                Modif frame3 = new Modif(nomplat,idPlat);
             }
 
         });

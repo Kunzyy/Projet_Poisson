@@ -52,16 +52,13 @@ public class fun {
     {
         Connection conn = getConnection();
 
-        Statement stmt  = null;
+        Statement stmt;
+        ResultSet rs = null;
+
         try {
             stmt = conn.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        ResultSet rs  = null;
-        try {
             rs = stmt.executeQuery(query);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,11 +95,8 @@ public class fun {
         while (true) {
             try {
                 if (!rs.next()) break;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
                 tab.add(rs.getString(label));
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
