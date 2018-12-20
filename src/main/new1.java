@@ -1,10 +1,14 @@
 package main;
 
+import sun.jvm.hotspot.utilities.IntegerEnum;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class new1 extends JFrame{
     private JPanel panel2;
@@ -38,10 +42,13 @@ public class new1 extends JFrame{
 
 
 ArrayList<String> Arrayplat = new ArrayList<>();
+ArrayList<String> ArrayidPlat = new ArrayList<>();
 ArrayList<String> Arraynomclient = new ArrayList<>();
 ArrayList<String> Arraynompoisson = new ArrayList<>();
 ArrayList<String> Arraycalibre = new ArrayList<>();
 ArrayList<String> Arraytypecuisson = new ArrayList<>();
+
+HashMap<Integer,String> MapPlat = new HashMap<>();
 
 
     public new1(){
@@ -60,6 +67,12 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
         fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
+        fun.remplirList("SELECT Plat.idPlat FROM Plat;","idPlat",ArrayidPlat);
+
+        for(int i = 0;i<Arrayplat.size();i++)
+        {
+            MapPlat.put(Integer.parseInt(ArrayidPlat.get(i)),Arrayplat.get(i));
+        }
 
         fun.getcm(jComboBoxPlat,Arrayplat);
         fun.getcm(tfnompoisson,Arraynompoisson);
@@ -74,10 +87,7 @@ ArrayList<String> Arraytypecuisson = new ArrayList<>();
             public void actionPerformed(ActionEvent e) {
 
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
-
-                ArrayList<String> tab = new ArrayList<>();
-                fun.remplirList("SELECT Plat.idPlat FROM Plat WHERE(((Plat.Nom="+nomplat+"));","idPlat",tab);
-                int idPlat = Integer.parseInt(tab.get(0));
+                int idPlat = fun.getKey(MapPlat,nomplat);
                 System.out.println(idPlat);
                 Modif frame3 = new Modif(nomplat,idPlat);
             }
