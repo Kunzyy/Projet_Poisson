@@ -54,6 +54,7 @@ public class Modif extends JFrame {
             }
         }
 
+
         for(int i = 0;i<tab.size();i++) {
             String query2 = "SELECT IngredientsBase.Nom FROM IngredientsBase WHERE (((IngredientsBase.idIngredientsBase)=" +
             tab.get(i) + "))";
@@ -124,10 +125,22 @@ public class Modif extends JFrame {
 
             }
         });
+
         spinner1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                String s = list1.getSelectedValue();
+                int i  = Arrayl1.indexOf(s);
+                quant.set(i, Integer.toString((Integer) spinner1.getValue()));
+            }
+        });
+        list1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
 
+                String s = list1.getSelectedValue();
+                int i  = Arrayl1.indexOf(s);
+                spinner1.setModel(new SpinnerNumberModel(Integer.parseInt(quant.get(i)), 1, 200, 1));
             }
         });
     }
