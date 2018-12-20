@@ -1,6 +1,6 @@
 package main;
 
-import sun.jvm.hotspot.utilities.IntegerEnum;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class new1 extends JFrame{
     private JPanel panel2;
@@ -65,7 +65,7 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
         fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
-        fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
+        fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
         fun.remplirList("SELECT Plat.idPlat FROM Plat;","idPlat",ArrayidPlat);
 
         for(int i = 0;i<Arrayplat.size();i++)
