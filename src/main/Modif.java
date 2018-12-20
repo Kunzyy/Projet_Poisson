@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JList;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -31,10 +33,6 @@ public class Modif extends JFrame {
     ArrayList<String> tab = new ArrayList<>();
     ArrayList<String> quant = new ArrayList<>();
 
-
-    public Modif(int idPlat) {
-
-}
 
     public Modif(String nomPlat,int idPlat) {
         label1.setText(nomPlat);
@@ -123,6 +121,12 @@ public class Modif extends JFrame {
                }
                 fun.getlm(list1,a);
 
+
+            }
+        });
+        spinner1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
 
             }
         });

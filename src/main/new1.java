@@ -53,14 +53,16 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
 
     public new1(){
 
-
         getnew1();
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
         label6.setVisible(false);
         spinner6.setVisible(false);
 
-        spinner1.setModel(new SpinnerNumberModel(1, 1, 20, 1));
+        spinner1.setModel(new SpinnerNumberModel(1, 1, 200, 1));
+        spinner4.setModel(new SpinnerNumberModel(1, 1, 200, 1));
+        spinner5.setModel(new SpinnerNumberModel(1, 1, 200, 1));
+        spinner6.setModel(new SpinnerNumberModel(50, 1, 10000, 50));
 
         fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
@@ -169,14 +171,16 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
 
                 if(label4.getText()== "Nombre de poissons :") {
                     label4.setText("Quantité de poisson :");
+                    spinner4.setVisible(false);
+                    spinner6.setVisible(true);
 
                 }
-                    else {
-                        label4.setText("Nombre de poissons :");
-
+                else {
+                    label4.setText("Nombre de poissons :");
+                    spinner6.setVisible(false);
+                    spinner4.setVisible(true);
+                    //Bakkouche faut voir pour ca     boolean quiu va avec un seul sipnner et pas deux spinner
                 }
-
-
             }
         });
     }
