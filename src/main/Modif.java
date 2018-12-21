@@ -38,8 +38,9 @@ public class Modif extends JFrame {
         label1.setText(nomPlat);
         getModif();
 
-        String query = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)=" +
-                idPlat+")) ORDER BY Contient.idPlat;";
+
+        String query = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)='" +
+                idPlat+"')) ORDER BY Contient.idPlat;";
 
         ResultSet rs = fun.selectQuery(query);
 
@@ -55,9 +56,10 @@ public class Modif extends JFrame {
         }
 
 
+
         for(int i = 0;i<tab.size();i++) {
-            String query2 = "SELECT IngredientsBase.Nom FROM IngredientsBase WHERE (((IngredientsBase.idIngredientsBase)=" +
-            tab.get(i) + "))";
+            String query2 = "SELECT IngredientsBase.Nom FROM IngredientsBase WHERE (((IngredientsBase.idIngredientsBase)='" +
+            tab.get(i) + "'))";
 
             ResultSet rs2 = fun.selectQuery(query2);
 
@@ -71,6 +73,8 @@ public class Modif extends JFrame {
                 }
             }
         }
+
+        System.out.println(Arrayl1.get(2));
 
         fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
 

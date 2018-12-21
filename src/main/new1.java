@@ -65,7 +65,7 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
         fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
-        fun.remplirList("SELECT Type_Cuisson.Type_Cuisson FROM Type_Cuisson;","Type_Cuisson",Arraytypecuisson);
+        fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
         fun.remplirList("SELECT Plat.idPlat FROM Plat;","idPlat",ArrayidPlat);
 
         for(int i = 0;i<Arrayplat.size();i++)
@@ -87,7 +87,6 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
 
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.getKey(MapPlat,nomplat);
-                System.out.println(idPlat);
                 Modif frame3 = new Modif(nomplat,idPlat);
             }
 
