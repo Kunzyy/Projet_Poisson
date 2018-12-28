@@ -4,11 +4,16 @@ package main;
 //Class qui contient toutes les fonctions utiles au programme
 //fun pour functions
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class fun {
 
@@ -32,11 +37,16 @@ public class fun {
         c.setModel(cm);
     }
 
+    public static void gettm(JTable table, String[][]data,String[]titre ){
+        DefaultTableModel tm = new DefaultTableModel(data,titre);
+       table.setModel(tm);
+    }
+
 
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.sqlite";
+        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
 
         try {
             conn = DriverManager.getConnection(url);
