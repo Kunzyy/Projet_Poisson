@@ -4,8 +4,7 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,9 +37,10 @@ public class new1 extends JFrame{
     private JComboBox comboBoxDate2;
     private JComboBox comboBoxDate3;
     private JComboBox comboBoxDate1;
+    private JLabel labelid2;
 
     private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
-    private boolean tranchesOuGrammes;  // 1 = grammes et 0 = tranches
+    private boolean tranchesOuGrammes;  // 0 = grammes et 1 = tranches
     private int idClient;
 
 
@@ -81,6 +81,7 @@ public class new1 extends JFrame{
         fun.getcm(comboBoxDate3,ArrayDate);
 
 
+        HashMap<Integer,String> MapDate = new HashMap<>();
 
 
         modificationButton.addActionListener(new ActionListener() {
@@ -118,9 +119,13 @@ public class new1 extends JFrame{
                 PClientEnregistre.setVisible(true);
                 PNouveauClient.setVisible(false);
                 newClient = false;
+                enregistrerClient();
+                labelid2.setText(Integer.toString(idClient));
             }
 
         });
+
+
 
         enregistrerButton.addActionListener(new ActionListener() {      //Panel Plat
             @Override
@@ -152,9 +157,27 @@ public class new1 extends JFrame{
                 HashMap<Integer,String> MapPoisson = new HashMap<>();
 
                 fun.recupId(MapPoisson,"SELECT Poisson.idPoisson FROM Poisson;","idPoisson",Arraynompoisson);
-
                 String nompoisson = jComboBoxPoisson.getSelectedItem().toString();
                 int idPoisson = fun.getKey(MapPoisson,nompoisson);
+
+                fun.recupId(MapDate,"SELECT DateCommande.idDate FROM DateCommande;","idDate",ArrayDate);
+                String date = comboBoxDate2.getSelectedItem().toString();
+                int idDate = fun.getKey(MapDate,date);
+
+
+                ArrayList<String> tab = new ArrayList<>();
+
+                tab.add(Integer.toString(idClient));
+                tab.add(Integer.toString(idPoisson));
+                tab.add(Integer.toString((Integer) spinner4.getValue()));
+                if(tranchesOuGrammes)
+                    tab.add("True");
+                else
+                    tab.add("False");
+                tab.add(Integer.toString(idDate));
+
+                fun.insertQuery("INSERT INTO Commande_2(idClient,idPoisson,Quantite,Unite,idDate) VALUES(?,?,?,?,?)",tab);
+
 
                 new1 frame2 = new new1();
                 setVisible(false);
@@ -170,7 +193,6 @@ public class new1 extends JFrame{
 
                 HashMap<Integer,String> MapHomard = new HashMap<>();
                 HashMap<Integer,String> MapCuisson = new HashMap<>();
-                HashMap<Integer,String> MapDate = new HashMap<>();
 
                 fun.recupId(MapHomard,"SELECT Homard.idHomard FROM Homard;","idHomard",Arraycalibre);
                 String calibre = cbcalibre.getSelectedItem().toString();
@@ -209,13 +231,21 @@ public class new1 extends JFrame{
                 if(label4.getText()== "Nombre de poissons :") {
                     label4.setText("Quantité de poisson :");
                     spinner4.setModel(new SpinnerNumberModel(50, 1, 10000, 50));
-                    tranchesOuGrammes = true;
+                    tranchesOuGrammes = false;
                 }
                 else {
                     label4.setText("Nombre de poissons :");
                     spinner4.setModel(new SpinnerNumberModel(1, 1, 200, 1));
-                    tranchesOuGrammes = false;
+                    tranchesOuGrammes = true;
                 }
+            }
+        });
+
+        cbnom.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                enregistrerClient();
+                labelid2.setText(Integer.toString(idClient));
             }
         });
     }
