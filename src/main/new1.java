@@ -38,26 +38,18 @@ public class new1 extends JFrame{
     private JComboBox comboBoxDate2;
     private JComboBox comboBoxDate3;
     private JComboBox comboBoxDate1;
-    private JLabel labelDate;
-    private JLabel labelDate2;
-    private JLabel labelDate3;
 
     private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
     private boolean tranchesOuGrammes;  // 1 = grammes et 0 = tranches
     private int idClient;
 
 
-ArrayList<String> Arrayplat = new ArrayList<>();
-ArrayList<String> Arraynomclient = new ArrayList<>();
-ArrayList<String> Arraynompoisson = new ArrayList<>();
-ArrayList<String> Arraycalibre = new ArrayList<>();
-ArrayList<String> Arraytypecuisson = new ArrayList<>();
-ArrayList<String> ArrayDate = new ArrayList<>();
-
-HashMap<Integer,String> MapPlat = new HashMap<>();
-HashMap<Integer,String> MapPoisson = new HashMap<>();
-HashMap<Integer,String> MapHomard = new HashMap<>();
-HashMap<Integer,String> MapClient = new HashMap<>();
+    ArrayList<String> Arrayplat = new ArrayList<>();
+    ArrayList<String> Arraynomclient = new ArrayList<>();
+    ArrayList<String> Arraynompoisson = new ArrayList<>();
+    ArrayList<String> Arraycalibre = new ArrayList<>();
+    ArrayList<String> Arraytypecuisson = new ArrayList<>();
+    ArrayList<String> ArrayDate = new ArrayList<>();
 
 
     public new1(){
@@ -91,11 +83,11 @@ HashMap<Integer,String> MapClient = new HashMap<>();
 
 
 
-
-
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                HashMap<Integer,String> MapPlat = new HashMap<>();
 
                 fun.recupId(MapPlat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
 
@@ -157,6 +149,8 @@ HashMap<Integer,String> MapClient = new HashMap<>();
 
                 enregistrerClient();
 
+                HashMap<Integer,String> MapPoisson = new HashMap<>();
+
                 fun.recupId(MapPoisson,"SELECT Poisson.idPoisson FROM Poisson;","idPoisson",Arraynompoisson);
 
                 String nompoisson = jComboBoxPoisson.getSelectedItem().toString();
@@ -174,14 +168,35 @@ HashMap<Integer,String> MapClient = new HashMap<>();
 
                 enregistrerClient();
 
-                fun.recupId(MapHomard,"SELECT Homard.idHomard FROM Homard;","idHomard",Arraycalibre);
+                HashMap<Integer,String> MapHomard = new HashMap<>();
+                HashMap<Integer,String> MapCuisson = new HashMap<>();
+                HashMap<Integer,String> MapDate = new HashMap<>();
 
+                fun.recupId(MapHomard,"SELECT Homard.idHomard FROM Homard;","idHomard",Arraycalibre);
                 String calibre = cbcalibre.getSelectedItem().toString();
                 int idHomard = fun.getKey(MapHomard,calibre);
 
+                fun.recupId(MapCuisson,"SELECT Type_Cuisson.idCuisson FROM Type_Cuisson;","idCuisson",Arraytypecuisson);
+                String cuisson = cbtypecuisson.getSelectedItem().toString();
+                int idCuisson = fun.getKey(MapCuisson,cuisson);
+
+                fun.recupId(MapDate,"SELECT DateCommande.idDate FROM DateCommande;","idDate",ArrayDate);
+                String date = comboBoxDate3.getSelectedItem().toString();
+                int idDate = fun.getKey(MapDate,date);
+
+
+                ArrayList<String> tab = new ArrayList<>();
+
+                tab.add(Integer.toString(idClient));
+                tab.add(Integer.toString(idHomard));
+                tab.add(Integer.toString(idCuisson));
+                tab.add(Integer.toString((Integer) spinner5.getValue()));
+                tab.add(Integer.toString(idDate));
+
+                fun.insertQuery("INSERT INTO Commande_3(idClient,idHomard,idCuisson,Quantite,idDate) VALUES(?,?,?,?,?)",tab);
+
                 new1 frame2 = new new1();
                 setVisible(false);
-
             }
 
         });
@@ -236,11 +251,11 @@ HashMap<Integer,String> MapClient = new HashMap<>();
         }
         else
         {
+            HashMap<Integer,String> MapClient = new HashMap<>();
+
             fun.recupId(MapClient,"SELECT Client.idClient FROM Client;","idClient",Arraynomclient);
             String nom = cbnom.getSelectedItem().toString();
             idClient = fun.getKey(MapClient,nom);
-
-
         }
     }
 }
