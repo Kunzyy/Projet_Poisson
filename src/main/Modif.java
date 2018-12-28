@@ -20,7 +20,7 @@ public class Modif extends JFrame {
     private JSpinner spinner1;
     private JButton retourButton;
     private JButton ajouterUnIngrédientButton;
-    private JList list2;
+    private JList <String>list2;
     private JLabel autre;
     private JLabel label1;
     private JScrollPane jsp1;
