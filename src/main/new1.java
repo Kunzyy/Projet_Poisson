@@ -55,17 +55,20 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         getnew1();
 
         ArrayList<String> idClientArray = new ArrayList<>();
-        fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
+        fun.remplirList("SELECT Client.idClient FROM Client ORDER BY Client.idClient","idClient",idClientArray);
 
 
-        int id = 1;
-        while(true)
-        {
-            if(Integer.parseInt(idClientArray.get(id)) != id) {
-                break;
-            }
-            id++;
+        int id;
+        System.out.println(idClientArray.size());
+        for( id=0;id<=idClientArray.size()-1;id++) {
+
+System.out.println(id);
+System.out.println(idClientArray.get(id));
+               if (Integer.parseInt(idClientArray.get(id)) != id) {
+                   break;
+               }
         }
+        id++;
 
         labelid.setText(Integer.toString(id));
 
