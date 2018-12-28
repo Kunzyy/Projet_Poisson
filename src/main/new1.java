@@ -19,12 +19,10 @@ public class new1 extends JFrame{
     private JTextField textField2;
     private JTextField textField3;
     private JSpinner spinner1;
-    private JSpinner spinner2;
     private JButton enregistrerButton;
     private JComboBox cbnom;
     private JComboBox jComboBoxPlat;
     private JComboBox jComboBoxPoisson;
-    private JSpinner spinner3;
     private JSpinner spinner4;
     private JButton enregistrerButton2;
     private JSpinner spinner5;
@@ -40,6 +38,9 @@ public class new1 extends JFrame{
     private JComboBox comboBoxDate2;
     private JComboBox comboBoxDate3;
     private JComboBox comboBoxDate1;
+    private JLabel labelDate;
+    private JLabel labelDate2;
+    private JLabel labelDate3;
 
     private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
     private boolean tranchesOuGrammes;  // 1 = grammes et 0 = tranches
