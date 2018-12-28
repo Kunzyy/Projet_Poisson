@@ -116,16 +116,17 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
                 ArrayList<String> idClientArray = new ArrayList<>();
                 fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
 
-                int idClient;
+
                 int i = 1;
                 while(true)
                 {
                     if(Integer.parseInt(idClientArray.get(i)) != i) {
-                        idClient = i;
                         break;
                     }
                     i++;
                 }
+
+                labelid.setText(Integer.toString(i));
 
                 String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
