@@ -15,7 +15,7 @@ public class new1 extends JFrame{
     private JTabbedPane tabbedPane1;
     private JRadioButton nouveauClientRadioButton;
     private JRadioButton clientEnregistréRadioButton;
-    private JComboBox textField1;
+    private JLabel labelid;
     private JTextField textField2;
     private JTextField textField3;
     private JSpinner spinner1;
@@ -53,6 +53,22 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
     public new1(){
 
         getnew1();
+
+        ArrayList<String> idClientArray = new ArrayList<>();
+        fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
+
+
+        int id = 1;
+        while(true)
+        {
+            if(Integer.parseInt(idClientArray.get(id)) != id) {
+                break;
+            }
+            id++;
+        }
+
+        labelid.setText(Integer.toString(id));
+
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
 
@@ -109,29 +125,17 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
             }
 
         });
+        int finalId = id;
         enregistrerButton.addActionListener(new ActionListener() {      //Panel Plat
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                ArrayList<String> idClientArray = new ArrayList<>();
-                fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
 
-
-                int i = 1;
-                while(true)
-                {
-                    if(Integer.parseInt(idClientArray.get(i)) != i) {
-                        break;
-                    }
-                    i++;
-                }
-
-                labelid.setText(Integer.toString(i));
 
                 String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
                 ArrayList<String> tab = new ArrayList<>();
-                tab.add(Integer.toString(idClient));
+                tab.add(Integer.toString(finalId));
                 tab.add(textField2.getText());
                 tab.add(textField3.getText());
 
