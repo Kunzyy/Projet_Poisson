@@ -117,7 +117,7 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
                 fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
 
 
-                int i = 1;
+                int i = 1;  // i => idClient
                 while(true)
                 {
                     if(Integer.parseInt(idClientArray.get(i)) != i) {
