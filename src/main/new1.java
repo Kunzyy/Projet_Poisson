@@ -58,17 +58,10 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         fun.remplirList("SELECT Client.idClient FROM Client ORDER BY Client.idClient","idClient",idClientArray);
 
 
-        int id;
-        System.out.println(idClientArray.size());
-        for( id=0;id<=idClientArray.size()-1;id++) {
+        int id=idClientArray.size()+1;
 
-System.out.println(id);
-System.out.println(idClientArray.get(id));
-               if (Integer.parseInt(idClientArray.get(id)) != id) {
-                   break;
-               }
-        }
-        id++;
+
+
 
         labelid.setText(Integer.toString(id));
 
