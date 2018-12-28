@@ -35,6 +35,7 @@ public class fun {
         }
 
         c.setModel(cm);
+
     }
 
     public static void gettm(JTable table, String[][]data,String[]titre ){

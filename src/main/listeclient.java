@@ -27,7 +27,7 @@ public class listeclient extends JFrame{
             e.printStackTrace();
         }
         String[][] data = new String[100][3];
-       String[]titre= {"Nom","Téléphone","Id"};
+       String[]titre = {"Nom","Téléphone","Id"};
 int i=0;
         while (true) {
             try {
