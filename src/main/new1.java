@@ -37,7 +37,13 @@ public class new1 extends JFrame{
     private JButton retourButton;
     private JCheckBox unitéEnGrammesCheckBox;
     private JLabel label4;
+    private JComboBox comboBoxDate2;
+    private JComboBox comboBoxDate3;
+    private JComboBox comboBoxDate1;
+
+    private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
     private boolean tranchesOuGrammes;  // 1 = grammes et 0 = tranches
+    private int idClient;
 
 
 ArrayList<String> Arrayplat = new ArrayList<>();
@@ -45,11 +51,12 @@ ArrayList<String> Arraynomclient = new ArrayList<>();
 ArrayList<String> Arraynompoisson = new ArrayList<>();
 ArrayList<String> Arraycalibre = new ArrayList<>();
 ArrayList<String> Arraytypecuisson = new ArrayList<>();
+ArrayList<String> ArrayDate = new ArrayList<>();
 
 HashMap<Integer,String> MapPlat = new HashMap<>();
 HashMap<Integer,String> MapPoisson = new HashMap<>();
 HashMap<Integer,String> MapHomard = new HashMap<>();
-
+HashMap<Integer,String> MapClient = new HashMap<>();
 
 
     public new1(){
@@ -61,13 +68,7 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
         fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
-
-
-
-        int id=Arraynomclient.size()+1;
-        labelid.setText(Integer.toString(id));
-
-
+        fun.remplirList("SELECT DateCommande.Date FROM DateCommande;","Date",ArrayDate);
 
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
@@ -82,6 +83,12 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
         fun.getcm(cbnom,Arraynomclient);
         fun.getcm(cbcalibre,Arraycalibre);
         fun.getcm(cbtypecuisson,Arraytypecuisson);
+        fun.getcm(comboBoxDate1,ArrayDate);
+        fun.getcm(comboBoxDate2,ArrayDate);
+        fun.getcm(comboBoxDate3,ArrayDate);
+
+
+
 
 
 
@@ -93,6 +100,7 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
 
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.getKey(MapPlat,nomplat);
+
                 Modif frame3 = new Modif(nomplat,idPlat);
             }
 
@@ -101,8 +109,12 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                idClient = Arraynomclient.size()+1;
+                labelid.setText(Integer.toString(idClient));
+
                 PClientEnregistre.setVisible(false);
                 PNouveauClient.setVisible(true);
+                newClient = true;
             }
 
         });
@@ -112,22 +124,17 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
 
                 PClientEnregistre.setVisible(true);
                 PNouveauClient.setVisible(false);
+                newClient = false;
             }
 
         });
-        int finalId = id;
+
         enregistrerButton.addActionListener(new ActionListener() {      //Panel Plat
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
+                enregistrerClient();
 
-                ArrayList<String> tab = new ArrayList<>();
-                tab.add(Integer.toString(finalId));
-                tab.add(textField2.getText());
-                tab.add(textField3.getText());
-
-                fun.insertQuery(query,tab);
                 new1 frame2 = new new1();
                 setVisible(false);
 
@@ -147,10 +154,12 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                enregistrerClient();
+
                 fun.recupId(MapPoisson,"SELECT Poisson.idPoisson FROM Poisson;","idPoisson",Arraynompoisson);
+
                 String nompoisson = jComboBoxPoisson.getSelectedItem().toString();
                 int idPoisson = fun.getKey(MapPoisson,nompoisson);
-                System.out.println(idPoisson);
 
                 new1 frame2 = new new1();
                 setVisible(false);
@@ -161,6 +170,13 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
         enregistrerButton1.addActionListener(new ActionListener() { // Panel Homard
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                enregistrerClient();
+
+                fun.recupId(MapHomard,"SELECT Homard.idHomard FROM Homard;","idHomard",Arraycalibre);
+
+                String calibre = cbcalibre.getSelectedItem().toString();
+                int idHomard = fun.getKey(MapHomard,calibre);
 
                 new1 frame2 = new new1();
                 setVisible(false);
@@ -198,5 +214,32 @@ HashMap<Integer,String> MapHomard = new HashMap<>();
         setMinimumSize(new Dimension(800,400));
 
 
+    }
+
+
+
+    private void enregistrerClient()
+    {
+        if(newClient)
+        {
+            idClient = Arraynomclient.size()+1;
+
+            String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
+
+            ArrayList<String> tab = new ArrayList<>();
+            tab.add(Integer.toString(idClient));
+            tab.add(textField2.getText());
+            tab.add(textField3.getText());
+
+            fun.insertQuery(query,tab);
+        }
+        else
+        {
+            fun.recupId(MapClient,"SELECT Client.idClient FROM Client;","idClient",Arraynomclient);
+            String nom = cbnom.getSelectedItem().toString();
+            idClient = fun.getKey(MapClient,nom);
+
+
+        }
     }
 }
