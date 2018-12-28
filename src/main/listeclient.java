@@ -26,7 +26,7 @@ public class listeclient extends JFrame{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String[][] data = new String[100][3];
+        String[][] data = new String[1000][3];
        String[]titre = {"Nom","Téléphone","Id"};
 int i=0;
         while (true) {
@@ -42,10 +42,6 @@ i++;
             }
         }
 
-
         fun.gettm(table1,data,titre);
-
-
-
     }
 }

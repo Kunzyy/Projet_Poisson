@@ -44,7 +44,7 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.sqlite";
+        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
 
         try {
             conn = DriverManager.getConnection(url);
