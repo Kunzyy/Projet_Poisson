@@ -113,9 +113,21 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
+                ArrayList<String> idClientArray = new ArrayList<>();
+                fun.remplirList("SELECT Client.idClient FROM Client","idClient",idClientArray);
 
-                int idClient = 1;
+                int idClient;
+                int i = 1;
+                while(true)
+                {
+                    if(Integer.parseInt(idClientArray.get(i)) != i) {
+                        idClient = i;
+                        break;
+                    }
+                    i++;
+                }
+
+                String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
                 ArrayList<String> tab = new ArrayList<>();
                 tab.add(Integer.toString(idClient));
@@ -125,7 +137,6 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
                 fun.insertQuery(query,tab);
                 new1 frame2 = new new1();
                 setVisible(false);
-
 
             }
 
