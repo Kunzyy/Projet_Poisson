@@ -1,12 +1,10 @@
 package main;
 
-import javax.print.attribute.standard.JobMessageFromOperator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.InputMethodListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -74,9 +72,9 @@ public class Modif extends JFrame {
             }
         }
 
-        System.out.println(Arrayl1.get(2));
 
-        fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
+
+        fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl2);
 
         fun.getlm(list1,Arrayl1);
         fun.getlm(list2,Arrayl2);
@@ -113,20 +111,30 @@ public class Modif extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-
-
-                ArrayList<String> a =new ArrayList<>();
-
-
                String s = list2.getSelectedValue().toString();
-                 if(s!=list1.getModel().getElementAt(0)) a.add(s);
+               boolean doublon =false;
 
-               for (int i=0;i<list1.getModel().getSize();i++){
-                   a.add(list1.getModel().getElementAt(i));
+               for(int i=0;i<list1.getModel().getSize();i++) {
+
+                   if (s.matches(list1.getModel().getElementAt(i))) doublon=true ;
                }
-                fun.getlm(list1,a);
+
+               if(doublon==false) {
+
+                   ArrayList<String> a =new ArrayList<>();
+                   a.add(s);
+                   for (int j = 0; j < list1.getModel().getSize(); j++) {
+                       a.add(list1.getModel().getElementAt(j));
+                   }
+
+                   fun.getlm(list1,a);
+                   ArrayList<String>IngredientsModif = new ArrayList<>();
+                  // IngredientsModif.add()
+                   //fun.insertQuery();
+                   //INSERT INTO IngredientsModif ( idIngredient, Nom )
 
 
+               }
             }
         });
 
@@ -142,8 +150,7 @@ public class Modif extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                String s = list1.getSelectedValue();
-                int i  = Arrayl1.indexOf(s);
+                int i  = Arrayl1.indexOf(list1.getSelectedValue());
                 spinner1.setModel(new SpinnerNumberModel(Integer.parseInt(quant.get(i)), 1, 200, 1));
             }
         });

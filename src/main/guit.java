@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
-import java.util.ArrayList;
+
 
 public class guit extends JFrame{
     private JPanel panel1;
@@ -14,7 +13,12 @@ public class guit extends JFrame{
 
     public guit () {
 
-        getguit();
+        add(panel1);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(735,340,1,1);
+        setPreferredSize(new Dimension(450,400));
+        setMinimumSize(new Dimension(450,400));
+        setVisible(true);
 
         nouvelleCommandeButton.addActionListener(new ActionListener() {
             @Override
@@ -31,27 +35,13 @@ public class guit extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                new2 frame4 = new new2();
-                frame4.getnew2();
+                choixdonnees frame6 = new choixdonnees();
                 setVisible(false);
             }
 
         });
 
     }
-
-    public void getguit (){
-
-        add(panel1);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(735,340,1,1);
-        setPreferredSize(new Dimension(450,400));
-        setMinimumSize(new Dimension(450,400));
-        setVisible(true);
-
-
-    }
-
 
 }
 

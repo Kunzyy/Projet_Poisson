@@ -35,7 +35,7 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.sqlite";
+        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
 
         try {
             conn = DriverManager.getConnection(url);
@@ -112,4 +112,17 @@ public class fun {
         }
         return null;
     }
+
+   /* public static String getid (String query) {
+        ResultSet rs = selectQuery(query);
+        while (true) {
+            try {
+                if (!rs.next()) break;
+                String t = rs.getString("id");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return t;
+    }*/
 }
