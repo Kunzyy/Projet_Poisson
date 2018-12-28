@@ -7,6 +7,7 @@ package main;
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class fun {
@@ -35,7 +36,7 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
+        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.sqlite";
 
         try {
             conn = DriverManager.getConnection(url);
@@ -71,7 +72,7 @@ public class fun {
 
 
 
-    public static void insertQuery(String query,ArrayList<String> tab)
+    public static void insertQuery(String query, ArrayList<String> tab)
     {
         Connection conn = getConnection();
 
@@ -89,7 +90,7 @@ public class fun {
         }
     }
 
-    public static void remplirList(String query,String label, ArrayList<String> tab)
+    public static void remplirList(String query, String label, ArrayList<String> tab)
     {
         ResultSet rs = selectQuery(query);
 
@@ -104,14 +105,26 @@ public class fun {
         }
     }
 
-    public static <K, V> K getKey(Map<K, V> map, V value) {
-        for (Map.Entry<K, V> entry : map.entrySet()) {
+    public static void recupId(HashMap<Integer, String> map, String query,String id,ArrayList<String> list)
+    {
+        ArrayList<String> ArrayId = new ArrayList<>();
+        remplirList(query,id,ArrayId);
+        for(int i = 0;i<list.size();i++)
+        {
+            map.put(Integer.parseInt(ArrayId.get(i)),list.get(i));
+        }
+    }
+
+    public static Integer getKey(HashMap<Integer, String> map, String value) {
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
             }
         }
         return null;
     }
+
+
 
    /* public static String getid (String query) {
         ResultSet rs = selectQuery(query);

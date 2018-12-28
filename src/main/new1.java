@@ -23,7 +23,7 @@ public class new1 extends JFrame{
     private JButton enregistrerButton;
     private JComboBox cbnom;
     private JComboBox jComboBoxPlat;
-    private JComboBox tfnompoisson;
+    private JComboBox jComboBoxPoisson;
     private JSpinner spinner3;
     private JSpinner spinner4;
     private JButton enregistrerButton2;
@@ -41,29 +41,33 @@ public class new1 extends JFrame{
 
 
 ArrayList<String> Arrayplat = new ArrayList<>();
-ArrayList<String> ArrayidPlat = new ArrayList<>();
 ArrayList<String> Arraynomclient = new ArrayList<>();
 ArrayList<String> Arraynompoisson = new ArrayList<>();
 ArrayList<String> Arraycalibre = new ArrayList<>();
 ArrayList<String> Arraytypecuisson = new ArrayList<>();
 
 HashMap<Integer,String> MapPlat = new HashMap<>();
+HashMap<Integer,String> MapPoisson = new HashMap<>();
+HashMap<Integer,String> MapHomard = new HashMap<>();
+
 
 
     public new1(){
 
         getnew1();
 
-        ArrayList<String> idClientArray = new ArrayList<>();
-        fun.remplirList("SELECT Client.idClient FROM Client ORDER BY Client.idClient","idClient",idClientArray);
+        fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
+        fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
+        fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
+        fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
+        fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
 
 
-        int id=idClientArray.size()+1;
 
-
-
-
+        int id=Arraynomclient.size()+1;
         labelid.setText(Integer.toString(id));
+
+
 
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
@@ -73,20 +77,8 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         spinner5.setModel(new SpinnerNumberModel(1, 1, 200, 1));
 
 
-        fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
-        fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
-        fun.remplirList("SELECT Client.Nom FROM Client;","Nom",Arraynomclient);
-        fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
-        fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
-        fun.remplirList("SELECT Plat.idPlat FROM Plat;","idPlat",ArrayidPlat);
-
-        for(int i = 0;i<Arrayplat.size();i++)
-        {
-            MapPlat.put(Integer.parseInt(ArrayidPlat.get(i)),Arrayplat.get(i));
-        }
-
         fun.getcm(jComboBoxPlat,Arrayplat);
-        fun.getcm(tfnompoisson,Arraynompoisson);
+        fun.getcm(jComboBoxPoisson,Arraynompoisson);
         fun.getcm(cbnom,Arraynomclient);
         fun.getcm(cbcalibre,Arraycalibre);
         fun.getcm(cbtypecuisson,Arraytypecuisson);
@@ -96,6 +88,8 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                fun.recupId(MapPlat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
 
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.getKey(MapPlat,nomplat);
@@ -126,8 +120,6 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-
                 String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
                 ArrayList<String> tab = new ArrayList<>();
@@ -154,6 +146,11 @@ HashMap<Integer,String> MapPlat = new HashMap<>();
         enregistrerButton2.addActionListener(new ActionListener() {  //Panel Poisson
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                fun.recupId(MapPoisson,"SELECT Poisson.idPoisson FROM Poisson;","idPoisson",Arraynompoisson);
+                String nompoisson = jComboBoxPoisson.getSelectedItem().toString();
+                int idPoisson = fun.getKey(MapPoisson,nompoisson);
+                System.out.println(idPoisson);
 
                 new1 frame2 = new new1();
                 setVisible(false);
