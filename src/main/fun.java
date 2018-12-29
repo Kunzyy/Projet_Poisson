@@ -32,7 +32,6 @@ public class fun {
         }
 
         c.setModel(cm);
-
     }
 
     public static void gettm(JTable table, String[][]data,String[]titre ){
@@ -44,10 +43,10 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
+        String url  = "jdbc:mysql://localhost:3306/projet";
 
         try {
-            conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url,"root","admin178");
         }
         catch (SQLException e) {
             e.printStackTrace();

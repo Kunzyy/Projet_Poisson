@@ -11,32 +11,50 @@ import java.util.ArrayList;
 
 class poisson {
 
-    public static void main(String[] args) throws IOException,SQLException {
+    public static void main(String[] args) throws IOException, SQLException {
 
         System.out.println("Bonjour");
 
 
         //SQL
-        connect();
+        //connect();
+        String query = "SELECT idClient, Nom, Telephone FROM Client";
+        System.out.println("Coucou2");
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn =DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/projet","root","admin178");
+            //here sonoo is database name, root is username and password
+            Statement stmt  = conn.createStatement();
+            ResultSet rs    = stmt.executeQuery(query);
+
+            System.out.println("Coucou");
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getInt("idClient") +  "\t" +
+                        rs.getString("Nom") + "\t" +
+                        rs.getString("Telephone"));
+            }
+        }catch(Exception e){ System.out.println(e);}
 
         //
         //
         //
 
         //Pdf Writer
-        Document document = new  Document(PageSize.A4);
+        Document document = new Document(PageSize.A4);
 
         document.addAuthor("Kuntz");
         document.addTitle("Projet");
 
-        try{
+        try {
 
-            PdfWriter writer = PdfWriter.getInstance(document,new FileOutputStream("test.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("test.pdf"));
 
             document.open();
 
             Image image = Image.getInstance("umons.png");
-            image.scaleToFit(150,100);
+            image.scaleToFit(150, 100);
 
             document.add(new Paragraph("Your developer journey with "));
             document.add(Chunk.NEWLINE);
@@ -54,9 +72,6 @@ class poisson {
         }
 
 
-
-
-
         System.out.println("Done ! Au revoir ;)");
 
         //if (conn != null)
@@ -64,7 +79,7 @@ class poisson {
     }
 
 
-    public static void connect(){
+    public static void connect() {
 
         //Pour le insert, le code est simple et c'est :
 
@@ -75,7 +90,7 @@ class poisson {
         tab.add("Francis");
         tab.add("117 217");
 
-        fun.insertQuery(query,tab);
+        fun.insertQuery(query, tab);
 
 
         /*try {
@@ -91,7 +106,6 @@ class poisson {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-    }
 
             /*
 
@@ -120,25 +134,23 @@ class poisson {
         }*/
 
 
-}
-
-
-
-/*Connection conn = null;
-        String url  = "jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=Database.accdb";
+        Connection conn = null;
+        String url = "jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=Database.accdb";
 
         try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-        } catch (ClassNotFoundException e) {
+        } catch (
+                ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Probeleme avec le driver");
         }
 
         try {
-            conn = DriverManager.getConnection(url,"","");
-        }
-        catch (SQLException e) {
+            conn = DriverManager.getConnection(url, "", "");
+        } catch (SQLException e) {
             e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(null,"Problème avec la base de données !");
+            javax.swing.JOptionPane.showMessageDialog(null, "Problème avec la base de données !");
         }
-        return conn; */
+        //return conn;
+    }
+}
