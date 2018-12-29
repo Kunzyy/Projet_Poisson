@@ -10,5 +10,8 @@
     <orderEntry type="library" name="itext-5.0.5" level="project" />
     <orderEntry type="library" name="sqlite-jdbc-3.23.1" level="project" />
     <orderEntry type="library" name="DateChooser" level="project" />
+    <orderEntry type="library" name="ks-sql_2.2" level="project" />
+    <orderEntry type="library" name="ks-sql" level="application" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
   </component>
 </module>

@@ -44,10 +44,10 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
+       String url  = "jdbc:mysql://localhost:3306//projetschema";
 
         try {
-            conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url,"root","178178");
         }
         catch (SQLException e) {
             e.printStackTrace();

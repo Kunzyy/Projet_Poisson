@@ -68,7 +68,12 @@ evenementButton.setVisible(false);
 
 
 
-        evenementButton.addActionListener(new ActionListener() {
+
+
+
+
+
+        comboBoxevenement.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int idDate = fun.getKey(MapDate,comboBoxevenement.getModel().getSelectedItem().toString());
