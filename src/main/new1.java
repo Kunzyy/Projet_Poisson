@@ -40,7 +40,7 @@ public class new1 extends JFrame{
     private JLabel labelid2;
 
     private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
-    private boolean tranchesOuGrammes;  // 0 = grammes et 1 = tranches
+    private boolean tranchesOuGrammes = true;  // 0 = grammes et 1 = tranches           Au départ, c'est les tranches qui sont select
     private int idClient;
 
 

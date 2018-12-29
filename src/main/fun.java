@@ -44,6 +44,7 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
+
        String url  = "jdbc:mysql://localhost:3306//projetschema";
 
         try {
