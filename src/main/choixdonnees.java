@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,11 +16,15 @@ public class choixdonnees extends JFrame {
     private JButton evenementButton;
     private JButton retourButton;
     private JComboBox comboBoxevenement;
+    private JComboBox comboBoxevenement2;
+    private JButton voirButton;
 
     public choixdonnees(){
 
         add(panel5);
         comboBoxevenement.setVisible(false);
+        comboBoxevenement2.setVisible(false);
+        voirButton.setVisible(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(735,340,1,1);
         setPreferredSize(new Dimension(450,400));
@@ -28,6 +32,11 @@ public class choixdonnees extends JFrame {
         setVisible(true);
 
         ArrayList<String>ArrayDate = new ArrayList<>();
+        ArrayList<String>Arraychoix = new ArrayList<>();
+        Arraychoix.add("Commande");
+        Arraychoix.add("Poisson");
+        Arraychoix.add("Homard");
+        fun.getcm(comboBoxevenement2,Arraychoix);
         fun.remplirList("SELECT DateCommande.Date FROM DateCommande;","Date",ArrayDate);
 
         fun.getcm(comboBoxevenement,ArrayDate);
@@ -61,23 +70,24 @@ detailcommande frame6 = new detailcommande();
             @Override
             public void actionPerformed(ActionEvent e) {
 comboBoxevenement.setVisible(true);
+comboBoxevenement2.setVisible(true);
+voirButton.setVisible(true);
 evenementButton.setVisible(false);
             }
         });
 
-
-
-
-
-
-
-
-
-        comboBoxevenement.addActionListener(new ActionListener() {
+        voirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int type=0;
+                String t =comboBoxevenement2.getModel().getSelectedItem().toString();
+                if(t.matches("Commande")) type=1;
+                if(t.matches("Poisson")) type=2;
+                if(t.matches("Hommard")) type=3;
+
                 int idDate = fun.getKey(MapDate,comboBoxevenement.getModel().getSelectedItem().toString());
-                evenement frame7 = new evenement(idDate);
+                evenement frame7 = new evenement(idDate,type);
+
             }
         });
     }

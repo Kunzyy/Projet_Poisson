@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,8 +9,20 @@ public class evenement extends JFrame {
 
 
     private JTable table1;
+    private JPanel panel6;
 
-    public evenement(int idDate){
+    public evenement(int idDate,int type){
+
+        add(panel6);
+
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setBounds(900,140,1,1);
+        setPreferredSize(new Dimension(450,800));
+        setMinimumSize(new Dimension(450,800));
+        setVisible(true);
+
+
+
       /*String query ="SELECT [Union_Ingr+A-R/Homa" +
               "rds_Date].Date, [Union_Ingr+A-R/Homards_Date].Nom, Sum([Union_Ingr+A-R/Homards_Date].SommeDealpha) AS SommeDeSommeDealpha"+
         "FROM [Union_Ingr+A-R/Homards_Date]"+
@@ -17,15 +30,25 @@ public class evenement extends JFrame {
         "WHERE [Union_Ingr+A-R/Homards_Date].idDate ='"+idDate+
               "'ORDER BY [Union_Ingr+A-R/Homards_Date].idDate";
 */
-        String query ="SELECT* FROM CLient ORDER BY Client.Nom";
-        ResultSet rs = fun.selectQuery(query);
+      String query=null;
+        System.out.println(type);
+       if(type==1) {
+            query = "SELECT* FROM CLient ORDER BY Client.Nom";
 
+       }
 
-        try {
-            int s = rs.getFetchSize();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+           if(type==2) {
+                query = "SELECT* FROM CLient ORDER BY Client.Nom";
+
+           }
+
+               if(type==3) {
+                    query = "SELECT* FROM CLient ORDER BY Client.Nom";
+
+               }
+        System.out.println(query);
+         ResultSet rs = fun.selectQuery(query);
+
         String[][] data = new String[1000][3];
         String[]titre = {"Nom","Téléphone","Id"};
         int i=0;

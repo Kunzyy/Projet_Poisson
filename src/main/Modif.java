@@ -121,19 +121,7 @@ public class Modif extends JFrame {
 
                if(doublon==false) {
 
-                   ArrayList<String> a =new ArrayList<>();
-                   a.add(s);
-                   for (int j = 0; j < list1.getModel().getSize(); j++) {
-                       a.add(list1.getModel().getElementAt(j));
-                   }
-
-                   fun.getlm(list1,a);
-                   ArrayList<String>IngredientsModif = new ArrayList<>();
-                  // IngredientsModif.add()
-                   //fun.insertQuery();
-                   //INSERT INTO IngredientsModif ( idIngredient, Nom )
-
-
+                   String query ="";
                }
             }
         });
