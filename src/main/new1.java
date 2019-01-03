@@ -5,6 +5,8 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,7 +56,13 @@ public class new1 extends JFrame{
 
     public new1(){
 
-        getnew1();
+        add(panel2);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(560,340,1,1);
+        setPreferredSize(new Dimension(800,400));
+        setMinimumSize(new Dimension(800,400));
+
 
         fun.remplirList("SELECT Plat.Nom FROM Plat;","Nom",Arrayplat);
         fun.remplirList("SELECT Poisson.Nom FROM Poisson;","Nom",Arraynompoisson);
@@ -87,6 +95,21 @@ public class new1 extends JFrame{
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+ArrayList<String> idcommande = new ArrayList<>();
+                String query = "SELECT Commande_1.idComPlat FROM Commande_1";
+               ResultSet rs = fun.selectQuery(query);
+                while (true) {
+                    try {
+                        if (!rs.next()) break;
+
+                        idcommande.add(rs.getString("idComPlat"));
+
+                    } catch (SQLException f) {
+                        f.printStackTrace();
+                    }
+                }
+
+                int idCommande =idcommande.size()+1;
 
                 HashMap<Integer,String> MapPlat = new HashMap<>();
 
@@ -95,7 +118,7 @@ public class new1 extends JFrame{
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.getKey(MapPlat,nomplat);
 
-                Modif frame3 = new Modif(nomplat,idPlat);
+                Modif frame3 = new Modif(nomplat,idPlat,idCommande);
             }
 
         });
@@ -132,6 +155,8 @@ public class new1 extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 enregistrerClient();
+
+                //if()   ajouter la condition si idcom=null...
 
                 new1 frame2 = new new1();
                 setVisible(false);
@@ -249,20 +274,6 @@ public class new1 extends JFrame{
             }
         });
     }
-
-    public void getnew1(){
-
-        add(panel2);
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(560,340,1,1);
-        setPreferredSize(new Dimension(800,400));
-        setMinimumSize(new Dimension(800,400));
-
-
-    }
-
-
 
     private void enregistrerClient()
     {

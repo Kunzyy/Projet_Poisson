@@ -25,7 +25,6 @@ public class guit extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 new1 frame2 = new new1();
-                frame2.getnew1();
                 setVisible(false);
             }
 
