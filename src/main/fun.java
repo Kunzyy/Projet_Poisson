@@ -121,14 +121,18 @@ public class fun {
         }
     }
 
-    public static void recupId(HashMap<Integer, String> map, String query,String id,ArrayList<String> list)
+    public static int recupId(String nom, String query,String id,ArrayList<String> list)
     {
+        HashMap<Integer, String> map = new HashMap<>();
+
         ArrayList<String> ArrayId = new ArrayList<>();
         remplirList(query,id,ArrayId);
         for(int i = 0;i<list.size();i++)
         {
             map.put(Integer.parseInt(ArrayId.get(i)),list.get(i));
         }
+
+        return fun.getKey(map,nom);
     }
 
     public static Integer getKey(HashMap<Integer, String> map, String value) {

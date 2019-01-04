@@ -124,7 +124,8 @@ public class Modif extends JFrame {
 
                for(int i=0;i<list1.getModel().getSize();i++) {
 
-                   if (s.matches(list1.getModel().getElementAt(i))) doublon=true ;
+                   if (s.matches(list1.getModel().getElementAt(i)))
+                       doublon=true ;
                }
 
                if(doublon==false) {

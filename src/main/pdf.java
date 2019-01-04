@@ -3,23 +3,25 @@ package main;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.FileNotFoundException;
+import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class pdf {
 
-    public static void pdfWriter() {
+    public static void main(String args[]) {
         //Pdf Writer
         Document document = new Document(PageSize.A4);
 
         document.addAuthor("Kuntz");
         document.addTitle("Projet");
 
-        try {
+        String dirName = "/Users/Nicolas/Documents/PDF_Outputs";
+        new File(dirName).mkdir();
 
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("test.pdf"));
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dirName+"/test2.pdf"));
 
             document.open();
 
@@ -39,9 +41,7 @@ public class pdf {
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
-
-
-            System.out.println("Done ! Au revoir ;)");
         }
+        System.out.println("Done ! Au revoir ;)");
     }
 }

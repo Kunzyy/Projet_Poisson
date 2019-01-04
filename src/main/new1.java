@@ -100,11 +100,8 @@ public class new1 extends JFrame{
 
                 int idCommande = ArrayidCommande.size()+1;
 
-                HashMap<Integer,String> MapPlat = new HashMap<>();
-
-                fun.recupId(MapPlat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
-                int idPlat = fun.getKey(MapPlat,nomplat);
+                int idPlat = fun.recupId(nomplat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
 
                 Modif frame3 = new Modif(nomplat,idPlat,idCommande);
             }
