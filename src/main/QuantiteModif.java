@@ -13,7 +13,7 @@ public class QuantiteModif extends JFrame {
     private JButton enregistrerButton;
 
 
-    QuantiteModif(ArrayList<String> Arrayl2, JList list2, int idCommande){
+    QuantiteModif(String nommodif, ArrayList<String> Arrayl2, int idCommande){
 
         add(panel8);
         setBounds(850,400,1,1);
@@ -30,8 +30,6 @@ public class QuantiteModif extends JFrame {
 
         tab.add("true");
 
-
-        String nommodif = list2.getSelectedValue().toString();
         int idIngredient = fun.recupId(nommodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredient",Arrayl2);
 
         tab.add(Integer.toString(idIngredient));

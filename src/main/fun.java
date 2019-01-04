@@ -44,21 +44,14 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:mysql://localhost:3306/projet";
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "admin178";
+        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
 
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url,user,password);
+            conn = DriverManager.getConnection(url);
         }
         catch (SQLException e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null,"Problème avec la base de données !");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(null,"Problème de driver!");
         }
         return conn;
     }
@@ -81,6 +74,29 @@ public class fun {
         }
 
         return rs;
+    }
+
+    public static String singleselectQuery(String query)
+    {
+        Connection conn = getConnection();
+
+        Statement stmt;
+        ResultSet rs=null;
+        String result=null;
+
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            result = rs.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 

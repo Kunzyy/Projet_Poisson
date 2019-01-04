@@ -71,7 +71,7 @@ public class new1 extends JFrame{
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
         fun.remplirList("SELECT DateCommande.Date FROM DateCommande;","Date",ArrayDate);
-        fun.remplirList("SELECT Commande_1.idComPlat FROM Commande_1","idComPlat",ArrayidCommande);
+        fun.remplirList("SELECT Modif.idComPlat FROM Modif","idComPlat",ArrayidCommande);
 
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
@@ -95,8 +95,9 @@ public class new1 extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                int idCommande = ArrayidCommande.size()+1;
 
+                int idCommande = ArrayidCommande.size()+1;
+                System.out.println(idCommande);
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.recupId(nomplat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
 

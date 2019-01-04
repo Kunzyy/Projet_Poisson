@@ -5,8 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ContainerAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.event.ChangeEvent;
@@ -132,19 +135,15 @@ public class Modif extends JFrame {
 
                boolean doublon =false;
 
-               for(int i=0;i<list3.getModel().getSize();i++) {
+               for(int i=0;i<Arrayl3.size();i++) {
 
-                   if (s.matches(list3.getModel().getElementAt(i).toString())) doublon=true ;
+                   if (s.matches(Arrayl3.get(i))) doublon=true ;
                }
 
                if(doublon==false) {
-
-
-
-
                 Arrayl3.add(s);
                 fun.getlm(list3,Arrayl3);
-                   QuantiteModif frame8 = new QuantiteModif(Arrayl2,list2,idCommande);
+                   QuantiteModif frame8 = new QuantiteModif(s,Arrayl2,idCommande);
                }
             }
         });
@@ -168,8 +167,29 @@ public class Modif extends JFrame {
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String eff = list2.getSelectedValue();
-//fun.recupId(eff,"SELECT")
+                String eff = list3.getSelectedValue().toString();
+                int idingre = fun.recupId(eff,"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
+                String query4 = "DELETE FROM Modif WHERE idComPlat ='"+idCommande+"' AND idIngredient ='"+idingre+"';";
+                fun.simpleQuery(query4);
+
+                for (int i = 0; i <Arrayl3.size() ; i++) {
+
+                    if(Arrayl3.get(i).matches(eff))Arrayl3.remove(i);
+                }
+            }
+        });
+
+
+        list3.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                System.out.println(list3.getSelectedValue().toString());
+                int id= fun.recupId(list3.getSelectedValue().toString(),"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
+                System.out.println(id);
+                String query3 = "SELECT Modif.Quantite FROM Modif WHERE idIngredient='" +id+"';";
+                String res = fun.singleselectQuery(query3);
+                System.out.println(res);
+                quantajoutlabel.setText(res);
             }
         });
     }
