@@ -104,6 +104,20 @@ public class fun {
 
     }
 
+    public static void simpleQuery(String query)
+    {
+        Connection conn = getConnection();
+        try {
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
     //Cette fonction remplit une liste vide par une colonne d'une table, il s'agit d'une requete SQL à un seul élément donc
     // plus facile à en faire une seule fonction
 
@@ -123,8 +137,10 @@ public class fun {
     }
 
 
-    //Cette fonction permet de récupérer l'id d'un élément d'une table à partir de son nom, il faut juste une liste des noms
-    // récupérée par une requete (un remplirlist)
+    // Cette fonction permet de récupérer l'id d'un élément d'une table à partir de son nom, il faut juste une liste des noms
+    // récupérée par une requete (un remplirlist). La map est crée à partir d'une list d'id et la liste de nom. C'est plus facile
+    // pour la creation de la liste d'id d'utiliser la requete et remplirlist car on n'utilise nulle part autre une liste d'id alors
+    // qu'on a deja cree une liste de noms avant dans le new1.
 
     public static int recupId(String nom, String query,String id,ArrayList<String> list)
     {

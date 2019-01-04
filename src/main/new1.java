@@ -60,7 +60,7 @@ public class new1 extends JFrame{
         add(panel2);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(560,340,1,1);
+        setBounds(200,150,1,1);
         setPreferredSize(new Dimension(800,400));
         setMinimumSize(new Dimension(800,400));
 

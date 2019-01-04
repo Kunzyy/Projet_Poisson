@@ -15,7 +15,7 @@ public class guit extends JFrame{
 
         add(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(735,340,1,1);
+        setBounds(200,150,1,1);
         setPreferredSize(new Dimension(450,400));
         setMinimumSize(new Dimension(450,400));
         setVisible(true);
