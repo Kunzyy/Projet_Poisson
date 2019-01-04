@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JList;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -130,7 +129,7 @@ public class Modif extends JFrame {
 
                if(doublon==false) {
 
-                   QantiteModif frame8 = new QantiteModif(Arrayl2,list2,idCommande);
+                   QuantiteModif frame8 = new QuantiteModif(Arrayl2,list2,idCommande);
                }
             }
         });

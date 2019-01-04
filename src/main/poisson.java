@@ -41,36 +41,6 @@ class poisson {
         //
         //
 
-        //Pdf Writer
-        Document document = new Document(PageSize.A4);
-
-        document.addAuthor("Kuntz");
-        document.addTitle("Projet");
-
-        try {
-
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("test.pdf"));
-
-            document.open();
-
-            Image image = Image.getInstance("umons.png");
-            image.scaleToFit(150, 100);
-
-            document.add(new Paragraph("Your developer journey with "));
-            document.add(Chunk.NEWLINE);
-            document.add(image);
-            document.add(Chunk.NEWLINE);
-            document.add(new Paragraph(" begins here..."));
-
-
-            document.close();
-            writer.close();
-            System.out.println("PDF crée");
-
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-
 
         System.out.println("Done ! Au revoir ;)");
 

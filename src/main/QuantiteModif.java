@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class QantiteModif extends JFrame {
+public class QuantiteModif extends JFrame {
     private JSpinner spinner1;
     private JPanel panel8;
     private JButton enregistrerButton;
 
 
-    QantiteModif(ArrayList<String> Arrayl2,JList list2,int idCommande){
+    QuantiteModif(ArrayList<String> Arrayl2, JList list2, int idCommande){
 
         add(panel8);
         setBounds(850,400,1,1);
@@ -27,7 +27,6 @@ public class QantiteModif extends JFrame {
         ArrayList<String> tab = new ArrayList<>();
 
         tab.add(Integer.toString(idCommande));
-
 
         tab.add("true");
 

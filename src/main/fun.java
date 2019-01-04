@@ -44,14 +44,21 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:/Users/Nicolas/Desktop/Dvlp/data.sqlite";
+        String url  = "jdbc:mysql://localhost:3306/projet";
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "admin178";
 
         try {
-            conn = DriverManager.getConnection(url);
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url,user,password);
         }
         catch (SQLException e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null,"Problème avec la base de données !");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null,"Problème de driver!");
         }
         return conn;
     }
@@ -96,6 +103,7 @@ public class fun {
         } catch (SQLException e){
             e.printStackTrace();
         }
+
     }
 
     public static void remplirList(String query, String label, ArrayList<String> tab)

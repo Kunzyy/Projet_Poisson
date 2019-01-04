@@ -52,6 +52,7 @@ public class new1 extends JFrame{
     ArrayList<String> Arraycalibre = new ArrayList<>();
     ArrayList<String> Arraytypecuisson = new ArrayList<>();
     ArrayList<String> ArrayDate = new ArrayList<>();
+    ArrayList<String> ArrayidCommande = new ArrayList<>();
 
 
     public new1(){
@@ -70,6 +71,7 @@ public class new1 extends JFrame{
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
         fun.remplirList("SELECT DateCommande.Date FROM DateCommande;","Date",ArrayDate);
+        fun.remplirList("SELECT Commande_1.idComPlat FROM Commande_1","idComPlat",ArrayidCommande);
 
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
@@ -95,26 +97,12 @@ public class new1 extends JFrame{
         modificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-ArrayList<String> idcommande = new ArrayList<>();
-                String query = "SELECT Commande_1.idComPlat FROM Commande_1";
-               ResultSet rs = fun.selectQuery(query);
-                while (true) {
-                    try {
-                        if (!rs.next()) break;
 
-                        idcommande.add(rs.getString("idComPlat"));
-
-                    } catch (SQLException f) {
-                        f.printStackTrace();
-                    }
-                }
-
-                int idCommande =idcommande.size()+1;
+                int idCommande = ArrayidCommande.size()+1;
 
                 HashMap<Integer,String> MapPlat = new HashMap<>();
 
                 fun.recupId(MapPlat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
-
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.getKey(MapPlat,nomplat);
 
