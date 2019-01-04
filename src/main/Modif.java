@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JList;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -32,9 +33,20 @@ public class Modif extends JFrame {
     ArrayList<String> quant = new ArrayList<>();
 
 
-    public Modif(String nomPlat,int idPlat) {
+    public Modif(String nomPlat,int idPlat,int idCommande) {
         label1.setText(nomPlat);
-        getModif();
+        add(Panel3);
+        setBounds(650,200,1,1);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setVisible(true);
+        setPreferredSize(new Dimension(750,800));
+        setMinimumSize(new Dimension(750,800));
+
+        fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
+
+        fun.getlm(list1,Arrayl1);
+        fun.getlm(list2,Arrayl2);
+
 
 
         String query = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)='" +
@@ -74,10 +86,7 @@ public class Modif extends JFrame {
 
 
 
-        fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase;","Nom",Arrayl2);
 
-        fun.getlm(list1,Arrayl1);
-        fun.getlm(list2,Arrayl2);
 
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -121,7 +130,7 @@ public class Modif extends JFrame {
 
                if(doublon==false) {
 
-                   String query ="";
+                   QantiteModif frame8 = new QantiteModif(Arrayl2,list2,idCommande);
                }
             }
         });
@@ -143,17 +152,4 @@ public class Modif extends JFrame {
             }
         });
     }
-
-    public void getModif(){
-        add(Panel3);
-        setBounds(650,200,1,1);
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setVisible(true);
-        setPreferredSize(new Dimension(750,800));
-        setMinimumSize(new Dimension(750,800));
-
-    }
-
-
-
 }
