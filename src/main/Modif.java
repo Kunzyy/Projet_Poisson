@@ -24,9 +24,15 @@ public class Modif extends JFrame {
     private JLabel autre;
     private JLabel label1;
     private JScrollPane jsp1;
+    private JList list3;
+    private JScrollPane jsp2;
+    private JLabel Ingredientsajoutes;
+    private JButton supprimerButton;
+    private JLabel quantajoutlabel;
 
     ArrayList<String> Arrayl1 = new ArrayList<>();
     ArrayList<String> Arrayl2 = new ArrayList<>();
+    ArrayList<String> Arrayl3 = new ArrayList<>();
 
     ArrayList<String> tab = new ArrayList<>();
     ArrayList<String> quant = new ArrayList<>();
@@ -110,7 +116,10 @@ public class Modif extends JFrame {
                 ajouterUnIngrédientButton.setVisible(false);
                 autre.setVisible(true);
                 jsp1.setVisible(true);
-
+                jsp2.setVisible(true);
+                Ingredientsajoutes.setVisible(true);
+                quantajoutlabel.setVisible(true);
+                supprimerButton.setVisible(true);
             }
         });
 
@@ -120,16 +129,21 @@ public class Modif extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
 
                String s = list2.getSelectedValue().toString();
+
                boolean doublon =false;
 
-               for(int i=0;i<list1.getModel().getSize();i++) {
+               for(int i=0;i<list3.getModel().getSize();i++) {
 
-                   if (s.matches(list1.getModel().getElementAt(i)))
-                       doublon=true ;
+                   if (s.matches(list3.getModel().getElementAt(i).toString())) doublon=true ;
                }
 
                if(doublon==false) {
 
+
+
+
+                Arrayl3.add(s);
+                fun.getlm(list3,Arrayl3);
                    QuantiteModif frame8 = new QuantiteModif(Arrayl2,list2,idCommande);
                }
             }
@@ -149,6 +163,13 @@ public class Modif extends JFrame {
 
                 int i  = Arrayl1.indexOf(list1.getSelectedValue());
                 spinner1.setModel(new SpinnerNumberModel(Integer.parseInt(quant.get(i)), 1, 200, 1));
+            }
+        });
+        supprimerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String eff = list2.getSelectedValue();
+//fun.recupId(eff,"SELECT")
             }
         });
     }

@@ -22,8 +22,8 @@ public class QuantiteModif extends JFrame {
         setPreferredSize(new Dimension(350,200));
         setMinimumSize(new Dimension(350,200));
 
-        String query ="INSERT INTO Modif ( idCommande, [Modif?], idIngredient, [Ajout/Retrait], Quantite )" +
-                "VALUES ([?], [?], [?], [?], [?]);";
+        String query ="INSERT INTO Modif ( idComPlat, Modif, idIngredient, AjoutRetrait, Quantite )" +
+                "VALUES (?, ?, ?, ?, ?);";
         ArrayList<String> tab = new ArrayList<>();
 
         tab.add(Integer.toString(idCommande));
@@ -32,7 +32,7 @@ public class QuantiteModif extends JFrame {
 
 
         String nommodif = list2.getSelectedValue().toString();
-        int idIngredient = fun.recupId(nommodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredientsModif",Arrayl2);
+        int idIngredient = fun.recupId(nommodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredient",Arrayl2);
 
         tab.add(Integer.toString(idIngredient));
 
