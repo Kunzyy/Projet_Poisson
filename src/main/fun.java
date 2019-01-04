@@ -85,8 +85,6 @@ public class fun {
 
 
 
-
-
     public static void insertQuery(String query, ArrayList<String> tab)
     {
         Connection conn = getConnection();
@@ -106,6 +104,9 @@ public class fun {
 
     }
 
+    //Cette fonction remplit une liste vide par une colonne d'une table, il s'agit d'une requete SQL à un seul élément donc
+    // plus facile à en faire une seule fonction
+
     public static void remplirList(String query, String label, ArrayList<String> tab)
     {
         ResultSet rs = selectQuery(query);
@@ -121,6 +122,10 @@ public class fun {
         }
     }
 
+
+    //Cette fonction permet de récupérer l'id d'un élément d'une table à partir de son nom, il faut juste une liste des noms
+    // récupérée par une requete (un remplirlist)
+
     public static int recupId(String nom, String query,String id,ArrayList<String> list)
     {
         HashMap<Integer, String> map = new HashMap<>();
@@ -134,6 +139,8 @@ public class fun {
 
         return fun.getKey(map,nom);
     }
+
+    //Fonction pour retrouver une clé à partir d'un nom dans une map
 
     public static Integer getKey(HashMap<Integer, String> map, String value) {
         for (Map.Entry<Integer, String> entry : map.entrySet()) {

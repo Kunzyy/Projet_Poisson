@@ -41,10 +41,6 @@ public class choixdonnees extends JFrame {
 
         fun.getcm(comboBoxevenement,ArrayDate);
 
-        HashMap<Integer,String> MapDate = new HashMap<>();
-
-        fun.recupId(MapDate,"SELECT DateCommande.idDate FROM DateCommande;","idDate",ArrayDate);
-
 
 
         retourButton.addActionListener(new ActionListener() {
@@ -69,10 +65,10 @@ detailcommande frame6 = new detailcommande();
         evenementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-comboBoxevenement.setVisible(true);
-comboBoxevenement2.setVisible(true);
-voirButton.setVisible(true);
-evenementButton.setVisible(false);
+        comboBoxevenement.setVisible(true);
+        comboBoxevenement2.setVisible(true);
+        voirButton.setVisible(true);
+        evenementButton.setVisible(false);
             }
         });
 
@@ -80,12 +76,14 @@ evenementButton.setVisible(false);
             @Override
             public void actionPerformed(ActionEvent e) {
                 int type=0;
-                String t =comboBoxevenement2.getModel().getSelectedItem().toString();
+                String date = comboBoxevenement.getSelectedItem().toString();
+                String t =comboBoxevenement2.getSelectedItem().toString();
                 if(t.matches("Commande")) type=1;
                 if(t.matches("Poisson")) type=2;
                 if(t.matches("Hommard")) type=3;
 
-                int idDate = fun.getKey(MapDate,comboBoxevenement.getModel().getSelectedItem().toString());
+                int idDate = fun.recupId(date,"SELECT DateCommande.idDate FROM DateCommande;","idDate",ArrayDate);
+
                 evenement frame7 = new evenement(idDate,type);
 
             }

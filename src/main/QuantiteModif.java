@@ -30,17 +30,15 @@ public class QuantiteModif extends JFrame {
 
         tab.add("true");
 
-        HashMap<Integer,String> Mapingredientsmodif = new HashMap<>();
 
-        fun.recupId(Mapingredientsmodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredientsModif",Arrayl2);
         String nommodif = list2.getSelectedValue().toString();
-        int idIngredient = fun.getKey(Mapingredientsmodif,nommodif);
+        int idIngredient = fun.recupId(nommodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredientsModif",Arrayl2);
+
         tab.add(Integer.toString(idIngredient));
 
         tab.add("true");
 
-        String q="0";
-        spinner1.setValue(q);
+        spinner1.setValue(0);
 
 
 
