@@ -184,10 +184,11 @@ public class Modif extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                int id= fun.recupId(list3.getSelectedValue().toString(),"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
+                int id = fun.recupId(list3.getSelectedValue().toString(),"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
                 System.out.println(id);
                 String query3 = "SELECT Modif.Quantite FROM Modif WHERE idIngredient='" +id+"';";
-                String res = fun.singleselectQuery(query3);
+                String res = fun.singleselectQuery(query3,"Quantite");
+
                 quantajoutlabel.setText(res);
             }
         });

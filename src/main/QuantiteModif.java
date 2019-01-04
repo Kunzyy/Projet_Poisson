@@ -28,13 +28,13 @@ public class QuantiteModif extends JFrame {
 
         tab.add(Integer.toString(idCommande));
 
-        tab.add("true");
+        tab.add("1");
 
         int idIngredient = fun.recupId(nommodif,"SELECT IngredientsModif.idIngredient FROM IngredientsModif;","idIngredient",Arrayl2);
 
         tab.add(Integer.toString(idIngredient));
 
-        tab.add("true");
+        tab.add("1");
 
         spinner1.setValue(0);
 

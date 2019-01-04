@@ -97,7 +97,7 @@ public class new1 extends JFrame{
 
 
                 int idCommande = ArrayidCommande.size()+1;
-                System.out.println(idCommande);
+
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.recupId(nomplat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
 
