@@ -130,7 +130,7 @@ public class Modif extends JFrame {
         list2.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-
+            ArrayList<String> a4 = new ArrayList<>();
                String s = list2.getSelectedValue().toString();
 
                boolean doublon =false;
@@ -141,8 +141,8 @@ public class Modif extends JFrame {
                }
 
                if(doublon==false) {
-                Arrayl3.add(s);
-                fun.getlm(list3,Arrayl3);
+                a4.add(s);
+                fun.getlm(list3,a4);
                    QuantiteModif frame8 = new QuantiteModif(s,Arrayl2,idCommande);
                }
             }
@@ -183,12 +183,11 @@ public class Modif extends JFrame {
         list3.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                System.out.println(list3.getSelectedValue().toString());
+
                 int id= fun.recupId(list3.getSelectedValue().toString(),"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
                 System.out.println(id);
                 String query3 = "SELECT Modif.Quantite FROM Modif WHERE idIngredient='" +id+"';";
                 String res = fun.singleselectQuery(query3);
-                System.out.println(res);
                 quantajoutlabel.setText(res);
             }
         });
