@@ -50,15 +50,8 @@ public class Modif extends JFrame {
         setPreferredSize(new Dimension(750,800));
         setMinimumSize(new Dimension(750,800));
 
-        fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
-
-        fun.getlm(list1,Arrayl1);
-        fun.getlm(list2,Arrayl2);
-
-
-
-        String query = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)='" +
-                idPlat+"')) ORDER BY Contient.idPlat;";
+        ArrayList<String> idIngrebase = new ArrayList<>();
+        String query = "SELECT Contient.idIngredientsBase FROM Contient WHERE idPlat ='"+idPlat+"';";
 
         ResultSet rs = fun.selectQuery(query);
 
@@ -66,8 +59,35 @@ public class Modif extends JFrame {
             try {
                 if (!rs.next()) break;
 
-                tab.add(rs.getString("idIngredientsBase"));
-                quant.add(rs.getString("Quantite"));
+                idIngrebase.add(rs.getString("idIngredientsBase"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println(idIngrebase.size());
+        for (int i = 0; i < idIngrebase.size(); i++) {
+
+            fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase WHERE idIngredientsBase ='" + idIngrebase.get(i) + "';", "Nom", Arrayl1);
+        }
+        fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
+
+        fun.getlm(list1,Arrayl1);
+        fun.getlm(list2,Arrayl2);
+
+
+
+        String queryl1 = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)='" +
+                idPlat+"')) ORDER BY Contient.idPlat;";
+
+        ResultSet rsl1 = fun.selectQuery(queryl1);
+
+        while (true) {
+            try {
+                if (!rsl1.next()) break;
+
+                tab.add(rsl1.getString("idIngredientsBase"));
+                quant.add(rsl1.getString("Quantite"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -142,6 +162,7 @@ public class Modif extends JFrame {
 
                if(doublon==false) {
                 a4.add(s);
+                Arrayl3.add(s);
                 fun.getlm(list3,a4);
                    QuantiteModif frame8 = new QuantiteModif(s,Arrayl2,idCommande);
                }
