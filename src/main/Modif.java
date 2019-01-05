@@ -3,10 +3,7 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ContainerAdapter;
+import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
@@ -50,6 +47,7 @@ public class Modif extends JFrame {
         setPreferredSize(new Dimension(750,800));
         setMinimumSize(new Dimension(750,800));
 
+
         ArrayList<String> idIngrebase = new ArrayList<>();
         String query = "SELECT Contient.idIngredientsBase FROM Contient WHERE idPlat ='"+idPlat+"';";
 
@@ -65,7 +63,7 @@ public class Modif extends JFrame {
             }
         }
 
-        System.out.println(idIngrebase.size());
+
         for (int i = 0; i < idIngrebase.size(); i++) {
 
             fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase WHERE idIngredientsBase ='" + idIngrebase.get(i) + "';", "Nom", Arrayl1);
@@ -150,7 +148,7 @@ public class Modif extends JFrame {
         list2.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-            ArrayList<String> a4 = new ArrayList<>();
+
                String s = list2.getSelectedValue().toString();
 
                boolean doublon =false;
@@ -161,9 +159,9 @@ public class Modif extends JFrame {
                }
 
                if(doublon==false) {
-                a4.add(s);
+
                 Arrayl3.add(s);
-                fun.getlm(list3,a4);
+                fun.getlm(list3,Arrayl3);
                    QuantiteModif frame8 = new QuantiteModif(s,Arrayl2,idCommande);
                }
             }
@@ -200,15 +198,16 @@ public class Modif extends JFrame {
             }
         });
 
-
-        list3.addListSelectionListener(new ListSelectionListener() {
+        list3.addMouseListener(new MouseAdapter() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
 
-                int id = fun.recupId(list3.getSelectedValue().toString(),"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
-                System.out.println(id);
-                String query3 = "SELECT Modif.Quantite FROM Modif WHERE idIngredient='" +id+"';";
-                String res = fun.singleselectQuery(query3,"Quantite");
+                int id = fun.recupId(list3.getSelectedValue().toString(), "SELECT IngredientsModif.idIngredient FROM IngredientsModif ", "idIngredient", Arrayl2);
+
+                String query3 = "SELECT Modif.Quantite FROM Modif WHERE idIngredient='" + id + "'AND idComPlat ='" + idCommande + "';";
+
+                String res = fun.singleselectQuery(query3, "Quantite");
 
                 quantajoutlabel.setText(res);
             }
