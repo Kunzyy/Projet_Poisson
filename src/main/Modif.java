@@ -193,7 +193,12 @@ public class Modif extends JFrame {
 
                 for (int i = 0; i <Arrayl3.size() ; i++) {
 
-                    if(Arrayl3.get(i).matches(eff))Arrayl3.remove(i);
+                    if(Arrayl3.get(i).matches(eff))
+                    {
+                        Arrayl3.remove(i);
+                        list3 = new JList();
+                        fun.getlm(list3,Arrayl3);
+                    }
                 }
             }
         });

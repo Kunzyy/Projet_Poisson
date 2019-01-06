@@ -44,14 +44,21 @@ public class fun {
     public static Connection getConnection()
     {
         Connection conn = null;
-        String url  = "jdbc:sqlite:C:\\Users\\frost\\Documents\\BA3\\Base de données\\data.db";
+        String url  = "jdbc:mysql://localhost:3306/projet";
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "admin178";
 
         try {
-            conn = DriverManager.getConnection(url);
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url,user,password);
         }
         catch (SQLException e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null,"Problème avec la base de données !");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null,"Problème de driver!");
         }
         return conn;
     }
@@ -76,61 +83,20 @@ public class fun {
         return rs;
     }
 
-    public static String singleselectQuery(String query)
+    public static String singleselectQuery(String query,String label)
     {
-        Connection conn = getConnection();
 
-        Statement stmt;
-        ResultSet rs=null;
-        String result=null;
-
+        ResultSet rs = selectQuery(query);
+        String result = null;
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
+            if(rs.next())
+                result = rs.getString(label);
+            rs.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            result = rs.getString(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
-    }
-
-
-
-    public static void insertQuery(String query, ArrayList<String> tab)
-    {
-        Connection conn = getConnection();
-
-        try {
-
-            PreparedStatement pst = conn.prepareStatement(query);
-
-            for(int i = 0;i<tab.size();i++)
-                pst.setString(i+1, tab.get(i));
-
-            pst.executeUpdate();
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void simpleQuery(String query)
-    {
-        Connection conn = getConnection();
-        try {
-
-            PreparedStatement pst = conn.prepareStatement(query);
-            pst.executeUpdate();
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
 
     }
 
@@ -150,6 +116,51 @@ public class fun {
                 e.printStackTrace();
             }
         }
+
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    public static void insertQuery(String query, ArrayList<String> tab)
+    {
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+
+            for(int i = 0;i<tab.size();i++)
+                pst.setString(i+1, tab.get(i));
+
+            pst.executeUpdate();
+            conn.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    //Fonction simple pour effectuer des deletes ou des drops
+
+    public static void simpleQuery(String query)
+    {
+        Connection conn = getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.executeUpdate();
+            conn.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
 
