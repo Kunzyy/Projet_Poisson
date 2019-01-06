@@ -44,6 +44,7 @@ public class new1 extends JFrame{
     private boolean newClient; //0 Client déjà enregistré et 1 nouveau client
     private boolean tranchesOuGrammes = true;  // 0 = grammes et 1 = tranches           Au départ, c'est les tranches qui sont select
     private int idClient;
+    private int idComPlat;
 
 
     ArrayList<String> Arrayplat = new ArrayList<>();
@@ -71,8 +72,9 @@ public class new1 extends JFrame{
         fun.remplirList("SELECT Homard.Calibre FROM Homard;","Calibre",Arraycalibre);
         fun.remplirList("SELECT Type_Cuisson.TypeCuisson FROM Type_Cuisson;","TypeCuisson",Arraytypecuisson);
         fun.remplirList("SELECT DateCommande.Date FROM DateCommande;","Date",ArrayDate);
-        fun.remplirList("SELECT Modif.idComPlat FROM Modif","idComPlat",ArrayidCommande);
+        fun.remplirList("SELECT Commande_1.idComPlat FROM Commande_1","idComPlat",ArrayidCommande);
 
+        idComPlat = ArrayidCommande.size()+1;
         PClientEnregistre.setVisible(false);
         PNouveauClient.setVisible(false);
 
@@ -95,13 +97,9 @@ public class new1 extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                int idCommande = ArrayidCommande.size()+1;
-
                 String nomplat = jComboBoxPlat.getSelectedItem().toString();
                 int idPlat = fun.recupId(nomplat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
-
-                Modif frame3 = new Modif(nomplat,idPlat,idCommande);
+                Modif frame3 = new Modif(nomplat,idPlat,idComPlat);
             }
 
         });
@@ -138,8 +136,25 @@ public class new1 extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 enregistrerClient();
+ArrayList<String> t = new ArrayList<>();
 
-                //if()   ajouter la condition si idcom=null...
+                t.add(Integer.toString(idComPlat));
+
+                String nomplat = jComboBoxPlat.getSelectedItem().toString();
+                int idPlat = fun.recupId(nomplat,"SELECT Plat.idPlat FROM Plat;","idPlat",Arrayplat);
+                t.add(Integer.toString(idPlat));
+
+                t.add(spinner1.getValue().toString());
+
+                if (newClient) t.add(labelid.getText());
+                else t.add(labelid2.getText());
+
+                String date = comboBoxDate1.getSelectedItem().toString();
+                int idDate = fun.recupId(date,"SELECT DateCommande.idDate FROM DateCommande;","idDate",ArrayDate);
+
+                t.add(Integer.toString(idDate));
+
+                fun.insertQuery( "  INSERT INTO Commande_1 ( idComPlat,idPlat, NombrePersonnes, idClient,idDate ) VALUES (?, ?, ?, ?,?);",t);
 
                 new1 frame2 = new new1();
                 setVisible(false);
@@ -255,6 +270,7 @@ public class new1 extends JFrame{
         if(newClient)
         {
             idClient = Arraynomclient.size()+1;
+            System.out.println(idClient);
 
             String query = "INSERT INTO Client(idClient,Nom,Telephone) VALUES(?,?,?)";
 
