@@ -190,9 +190,9 @@ ArrayList<String> t = new ArrayList<>();
                 tab.add(Integer.toString(idPoisson));
                 tab.add(Integer.toString((Integer) spinner4.getValue()));
                 if(tranchesOuGrammes)
-                    tab.add("True");
+                    tab.add("1");
                 else
-                    tab.add("False");
+                    tab.add("0");
                 tab.add(Integer.toString(idDate));
 
                 fun.insertQuery("INSERT INTO Commande_2(idClient,idPoisson,Quantite,Unite,idDate) VALUES(?,?,?,?,?)",tab);

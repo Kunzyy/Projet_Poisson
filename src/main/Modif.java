@@ -130,7 +130,7 @@ public class Modif extends JFrame {
 
                     if(!quant.get(i).matches(quantcopy.get(i))){
 
-                        String query ="INSERT INTO Modif ( idComPlat, Modif, idIngredient, AjoutRetrait, Quantite )" +
+                        String query ="INSERT INTO Modif (idComPlat, Modif, idIngredient, AjoutRetrait, Quantite )" +
                                 "VALUES (?, ?, ?, ?, ?);";
                         ArrayList<String> tab = new ArrayList<>();
 
@@ -138,7 +138,7 @@ public class Modif extends JFrame {
 
                         tab.add("0");
 
-                        int idIngredient = fun.recupId(list1.getSelectedValue().toString(),"SELECT IngredientsBase.idIngredientsBase FROM IngredientsBase;","idIngredientsBase",Arrayl1);
+                        int idIngredient = fun.recupId(list1.getSelectedValue(),"SELECT IngredientsBase.idIngredientsBase FROM IngredientsBase;","idIngredientsBase",Arrayl1);
 
                         tab.add(Integer.toString(idIngredient));
 
@@ -175,6 +175,7 @@ public class Modif extends JFrame {
         list2.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+
 
                String s = list2.getSelectedValue().toString();
 
@@ -213,18 +214,20 @@ public class Modif extends JFrame {
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String eff = list3.getSelectedValue().toString();
-                for (int i = 0; i <Arrayl3.size() ; i++) {
-                    if(Arrayl3.get(i).matches(eff)){
-                        Arrayl3.remove(i);
-                        fun.getlm(list3,Arrayl3);
+
+                if(Arrayl3.size() > 0)
+                {
+                    String eff = list3.getSelectedValue().toString();
+                    for (int i = 0; i <Arrayl3.size() ; i++) {
+                        if(Arrayl3.get(i).matches(eff)){
+                            Arrayl3.remove(i);
+                            fun.getlm(list3,Arrayl3);
+                        }
                     }
+                    int idingre = fun.recupId(eff,"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl2);
+                    String query4 = "DELETE FROM Modif WHERE idComPlat ='"+idCommande+"' AND idIngredient ='"+idingre+"';";
+                    fun.simpleQuery(query4);
                 }
-                int idingre = fun.recupId(eff,"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl2);
-                String query4 = "DELETE FROM Modif WHERE idComPlat ='"+idCommande+"' AND idIngredient ='"+idingre+"';";
-                fun.simpleQuery(query4);
-
-
             }
         });
 
@@ -239,7 +242,7 @@ public class Modif extends JFrame {
 
                 String res = fun.singleselectQuery(query3, "Quantite");
 
-                quantajoutlabel.setText(res);
+                quantajoutlabel.setText("Quantité : "+ res);
             }
         });
     }

@@ -4,14 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ContainerAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
 
 
 public class listeclient extends JFrame{
@@ -21,6 +17,7 @@ public class listeclient extends JFrame{
 
     int positionClient = -1;
 
+
     public listeclient(){
         add(panel6);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -28,6 +25,8 @@ public class listeclient extends JFrame{
         setPreferredSize(new Dimension(450,800));
         setMinimumSize(new Dimension(450,800));
         setVisible(true);
+
+        sortiePDFButton.setEnabled(false);
 
         String query = "SELECT* FROM Client ORDER BY Client.idClient";
         ResultSet rs = fun.selectQuery(query);
@@ -54,14 +53,19 @@ public class listeclient extends JFrame{
 
         fun.gettm(table1,data,titre);
 
+
+        int j = i;
         table1.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = table1.rowAtPoint(evt.getPoint());
                 int col = table1.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col >= 0) {
+                if (row >= 0 && col >= 0 && j>row) {
                     positionClient = row;
+                    sortiePDFButton.setEnabled(true);
                 }
+                else
+                    sortiePDFButton.setEnabled(false);
             }
         });
 
@@ -70,14 +74,15 @@ public class listeclient extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(positionClient != -1) {
+
+                    int tmp = positionClient;
                     positionClient++;   //Pour que les ID commencent à 1,2,3... au lieu de 0,1,2...
 
                     ArrayList<String> list = new ArrayList<>();
-                    list.add(data[positionClient][0]);
-                    list.add(data[positionClient][1]);
-                    list.add(data[positionClient][2]);
-                    //pdf.pdfClient(list);
-                    System.out.println("Coucou" + positionClient);
+                    list.add(data[tmp][0]);
+                    list.add(data[tmp][1]);
+                    list.add(data[tmp][2]);
+                    pdf.pdfClient(list);
                 }
             }
         });

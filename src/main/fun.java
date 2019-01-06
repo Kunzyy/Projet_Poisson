@@ -90,14 +90,15 @@ public class fun {
         String result = null;
         try {
             if(rs.next())
+            {
                 result = rs.getString(label);
-            rs.close();
+                rs.close();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
-
     }
 
     //Cette fonction remplit une liste vide par une colonne d'une table, il s'agit d'une requete SQL à un seul élément donc
