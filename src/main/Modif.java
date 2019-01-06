@@ -33,10 +33,10 @@ public class Modif extends JFrame {
     ArrayList<String> Arrayl1 = new ArrayList<>();
     ArrayList<String> Arrayl2 = new ArrayList<>();
     ArrayList<String> Arrayl3 = new ArrayList<>();
-
     ArrayList<String> tab = new ArrayList<>();
     ArrayList<String> quant = new ArrayList<>();
-
+    ArrayList<String> quantcopy = new ArrayList<>() ;
+    ArrayList<String> idIngrebase = new ArrayList<>();
 
     public Modif(String nomPlat,int idPlat,int idCommande) {
         label1.setText(nomPlat);
@@ -48,7 +48,7 @@ public class Modif extends JFrame {
         setMinimumSize(new Dimension(750,800));
 
 
-        ArrayList<String> idIngrebase = new ArrayList<>();
+
         String query = "SELECT Contient.idIngredientsBase FROM Contient WHERE idPlat ='"+idPlat+"';";
 
         ResultSet rs = fun.selectQuery(query);
@@ -69,13 +69,12 @@ public class Modif extends JFrame {
             fun.remplirList("SELECT IngredientsBase.Nom FROM IngredientsBase WHERE idIngredientsBase ='" + idIngrebase.get(i) + "';", "Nom", Arrayl1);
         }
         fun.remplirList("SELECT IngredientsModif.Nom FROM IngredientsModif;","Nom",Arrayl2);
-
         fun.getlm(list1,Arrayl1);
         fun.getlm(list2,Arrayl2);
 
 
 
-        String queryl1 = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite FROM Contient WHERE (((Contient.idPlat)='" +
+        String queryl1 = "SELECT Contient.idPlat, Contient.idIngredientsBase, Contient.Quantite,Contient.Quantite AS Quantcopy FROM Contient WHERE (((Contient.idPlat)='" +
                 idPlat+"')) ORDER BY Contient.idPlat;";
 
         ResultSet rsl1 = fun.selectQuery(queryl1);
@@ -86,6 +85,7 @@ public class Modif extends JFrame {
 
                 tab.add(rsl1.getString("idIngredientsBase"));
                 quant.add(rsl1.getString("Quantite"));
+                quantcopy.add(rsl1.getString("Quantcopy"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -126,10 +126,37 @@ public class Modif extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                for (int i = 0; i <quant.size() ; i++) {
+
+                    if(!quant.get(i).matches(quantcopy.get(i))){
+
+                        String query ="INSERT INTO Modif ( idComPlat, Modif, idIngredient, AjoutRetrait, Quantite )" +
+                                "VALUES (?, ?, ?, ?, ?);";
+                        ArrayList<String> tab = new ArrayList<>();
+
+                        tab.add(Integer.toString(idCommande));
+
+                        tab.add("0");
+
+                        int idIngredient = fun.recupId(list1.getSelectedValue().toString(),"SELECT IngredientsBase.idIngredientsBase FROM IngredientsBase;","idIngredientsBase",Arrayl1);
+
+                        tab.add(Integer.toString(idIngredient));
+
+                        if(Integer.parseInt(quant.get(i)) > Integer.parseInt(quantcopy.get(i))){
+                            tab.add("1");
+                            tab.add(Integer.toString(Integer.parseInt(quant.get(i)) - Integer.parseInt(quantcopy.get(i))));
+                        }else{
+                            tab.add("0");
+                            tab.add(Integer.toString(Integer.parseInt(quantcopy.get(i))-Integer.parseInt(quant.get(i))));
+                        }
+                        fun.insertQuery(query,tab);
+                    }
+                }
                 setVisible(false);
 
             }
         });
+
         ajouterUnIngrédientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -187,19 +214,17 @@ public class Modif extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String eff = list3.getSelectedValue().toString();
-                int idingre = fun.recupId(eff,"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl3);
-                String query4 = "DELETE FROM Modif WHERE idComPlat ='"+idCommande+"' AND idIngredient ='"+idingre+"';";
-                fun.simpleQuery(query4);
-
                 for (int i = 0; i <Arrayl3.size() ; i++) {
-
-                    if(Arrayl3.get(i).matches(eff))
-                    {
+                    if(Arrayl3.get(i).matches(eff)){
                         Arrayl3.remove(i);
-                        list3 = new JList();
                         fun.getlm(list3,Arrayl3);
                     }
                 }
+                int idingre = fun.recupId(eff,"SELECT IngredientsModif.idIngredient FROM IngredientsModif ","idIngredient",Arrayl2);
+                String query4 = "DELETE FROM Modif WHERE idComPlat ='"+idCommande+"' AND idIngredient ='"+idingre+"';";
+                fun.simpleQuery(query4);
+
+
             }
         });
 

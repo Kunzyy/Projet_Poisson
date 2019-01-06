@@ -16,11 +16,11 @@ public class QuantiteModif extends JFrame {
     QuantiteModif(String nommodif, ArrayList<String> Arrayl2, int idCommande){
 
         add(panel8);
-        setBounds(850,400,1,1);
+        setBounds(850,450,1,1);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(true);
-        setPreferredSize(new Dimension(350,200));
-        setMinimumSize(new Dimension(350,200));
+        setPreferredSize(new Dimension(350,100));
+        setMinimumSize(new Dimension(350,100));
 
         String query ="INSERT INTO Modif ( idComPlat, Modif, idIngredient, AjoutRetrait, Quantite )" +
                 "VALUES (?, ?, ?, ?, ?);";
